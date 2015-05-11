@@ -1,3 +1,7 @@
+<!--=================================================================================================================
+ | akihyro/robocode-robots
+ +===================================================================================================================-->
+
 <project
     xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -9,17 +13,42 @@
     <version>0.1</version>
     <packaging>jar</packaging>
 
+    <name>robocode-robots</name>
+    <description>My robocode robots.</description>
+    <url>https://github.com/akihyro/robocode-robots</url>
+
     <properties>
+        <author.id>akihyro</author.id>
+        <author.name>Akihiro Kondo</author.name>
+        <author.url>https://github.com/akihyro</author.url>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <robocode.version>1.9.2.1</robocode.version>
     </properties>
+
+    <scm>
+        <url>https://github.com/akihyro/robocode-robots</url>
+        <connection>scm:git:git@github.com:akihyro/robocode-robots.git</connection>
+    </scm>
+
+    <issueManagement>
+        <url>https://github.com/akihyro/robocode-robots/issues</url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>${author.id}</id>
+            <name>${author.name}</name>
+            <url>${author.url}</url>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
             <groupId>net.sf.robocode</groupId>
             <artifactId>robocode.api</artifactId>
-            <version>1.9.2.1</version>
+            <version>${robocode.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -31,6 +60,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.groupId}-${project.artifactId}-${project.version}</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

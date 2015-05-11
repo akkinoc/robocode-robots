@@ -5,7 +5,7 @@ import java.awt.Color;
 import robocode.AdvancedRobot;
 
 /**
- * ロボット: Luceid.
+ * Robot: Luceid.
  */
 public class Luceid extends AdvancedRobot {
 
