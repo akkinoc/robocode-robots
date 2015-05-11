@@ -1,4 +1,1 @@
-robocode-robots
-===============
-
-Robocodeの俺俺ロボットたち。  
+../../../README.md
