@@ -17,23 +17,14 @@ public class PointToPoint {
     /**
      * FROM。
      */
+    @NonNull
     private final Point from;
 
     /**
      * TO。
      */
+    @NonNull
     private final Point to;
-
-    /**
-     * コンストラクタ。
-     *
-     * @param from FROM。
-     * @param to TO。
-     */
-    public PointToPoint(@NonNull Point from, @NonNull Point to) {
-        this.from = from;
-        this.to = to;
-    }
 
     /**
      * X軸の距離を取得する。

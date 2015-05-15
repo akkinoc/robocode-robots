@@ -18,15 +18,4 @@ public class Size {
      */
     private final double height;
 
-    /**
-     * コンストラクタ。
-     *
-     * @param width 幅。
-     * @param height 高さ。
-     */
-    public Size(double width, double height) {
-        this.width = width;
-        this.height = height;
-    }
-
 }

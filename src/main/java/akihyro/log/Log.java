@@ -6,6 +6,8 @@ import java.util.Date;
 import lombok.NonNull;
 
 import akihyro.AbstractRobot;
+import akihyro.collection.IndexedElement;
+import static akihyro.collection.IndexedIterable.withIndex;
 
 /**
  * ログ。
@@ -49,9 +51,14 @@ public class Log {
 
     /**
      * メソッドの開始ログを記録する。
+     *
+     * @param params パラメータ。
      */
-    public void startMethod() {
+    public void startMethod(@NonNull Object... params) {
         record("start: %s", getCaller());
+        for (IndexedElement<Object> p : withIndex(params)) {
+            record("-- %2d: %s", p.getIndex(), p.getValue());
+        }
     }
 
     /**
@@ -62,12 +69,12 @@ public class Log {
     }
 
     /**
-     * 呼出し元を取得する。
+     * 呼出し元を示すスタックトレース要素を取得する。
      *
-     * @return 呼出し元。
+     * @return 呼出し元を示すスタックトレース要素。
      */
-    private String getCaller() {
-        return new Exception().getStackTrace()[2].toString();
+    private StackTraceElement getCaller() {
+        return new Exception().getStackTrace()[2];
     }
 
 }

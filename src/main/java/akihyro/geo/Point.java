@@ -18,15 +18,4 @@ public class Point {
      */
     private final double y;
 
-    /**
-     * コンストラクタ。
-     *
-     * @param x X。
-     * @param y Y。
-     */
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-
 }

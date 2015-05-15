@@ -1,0 +1,4 @@
+/**
+ * コレクション。
+ */
+package akihyro.collection;
