@@ -2,7 +2,9 @@ package akihyro;
 
 import robocode.AdvancedRobot;
 
-import akihyro.log.Logger;
+import lombok.Getter;
+
+import akihyro.log.Log;
 
 /**
  * ロボットの基底クラス。
@@ -10,9 +12,10 @@ import akihyro.log.Logger;
 public abstract class AbstractRobot extends AdvancedRobot {
 
     /**
-     * ロガー。
+     * ログ。
      */
-    public final Logger log = new Logger(this);
+    @Getter
+    private final Log log = new Log(this);
 
     /** {@inheritDoc} */
     @Override

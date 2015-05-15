@@ -8,9 +8,9 @@ import lombok.NonNull;
 import akihyro.AbstractRobot;
 
 /**
- * ロガー。
+ * ログ。
  */
-public class Logger {
+public class Log {
 
     /**
      * レコードフォーマット。
@@ -28,7 +28,7 @@ public class Logger {
      *
      * @param robot ロボット。
      */
-    public Logger(@NonNull AbstractRobot robot) {
+    public Log(@NonNull AbstractRobot robot) {
         this.robot = robot;
     }
 

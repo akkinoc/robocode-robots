@@ -2,10 +2,17 @@ package akihyro;
 
 import java.awt.Color;
 
+import akihyro.log.Log;
+
 /**
  * Robot: Luceid.
  */
 public class Luceid extends AbstractRobot {
+
+    /**
+     * ログ。
+     */
+    private final Log log = getLog();
 
     /** {@inheritDoc} */
     @Override
