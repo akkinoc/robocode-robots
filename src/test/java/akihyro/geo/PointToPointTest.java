@@ -145,7 +145,7 @@ public class PointToPointTest {
         Point from = new Point(0.0, 0.0);
         Point to = new Point(-1.0, - sqrt(3.0));
         PointToPoint p2p = new PointToPoint(from, to);
-        assertThat(p2p.getDirection(), closeTo(PI + PI / 6.0, NEAR_DELTA));
+        assertThat(p2p.getDirection(), closeTo(- PI + PI / 6.0, NEAR_DELTA));
     }
 
     /**
