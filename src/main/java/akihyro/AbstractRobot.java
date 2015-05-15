@@ -4,6 +4,8 @@ import robocode.AdvancedRobot;
 
 import lombok.Getter;
 
+import akihyro.geo.Point;
+import akihyro.geo.Size;
 import akihyro.log.Log;
 
 /**
@@ -37,6 +39,24 @@ public abstract class AbstractRobot extends AdvancedRobot {
      */
     protected void tick() {
         doNothing();
+    }
+
+    /**
+     * 位置を取得する。
+     *
+     * @return 位置。
+     */
+    public Point getPosition() {
+        return new Point(getX(), getY());
+    }
+
+    /**
+     * サイズを取得する。
+     *
+     * @return サイズ。
+     */
+    public Size getSize() {
+        return new Size(getWidth(), getHeight());
     }
 
 }
