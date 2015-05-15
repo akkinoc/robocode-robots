@@ -1,4 +1,4 @@
 robocode-robots
 ===============
 
-Robocodeの俺俺ロボットたち。  
+akihyro's robocode robots.

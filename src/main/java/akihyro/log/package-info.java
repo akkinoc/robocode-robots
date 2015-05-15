@@ -1,0 +1,4 @@
+/**
+ * ログ。
+ */
+package akihyro.log;
