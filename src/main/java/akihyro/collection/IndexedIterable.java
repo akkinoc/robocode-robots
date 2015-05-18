@@ -40,6 +40,7 @@ public class IndexedIterable<T> implements Iterable<IndexedElement<T>> {
      * @param source ソースとなる配列。
      * @return インデックス付きで反復可能な {@link Iterable}。
      */
+    @SafeVarargs
     public static <T> IndexedIterable<T> withIndex(@NonNull T... source) {
         return withIndex(asList(source));
     }
