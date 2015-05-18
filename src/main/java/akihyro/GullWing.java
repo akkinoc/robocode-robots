@@ -1,6 +1,7 @@
 package akihyro;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import static java.awt.event.MouseEvent.BUTTON1;
 import static java.awt.event.MouseEvent.BUTTON3;
@@ -117,10 +118,31 @@ public class GullWing extends AbstractRobot {
         log.startMethod(event);
 
         // マウスホイールで砲台を回転させる
-        double angle = getGunTurnRemainingRadians() + PI / 10 * event.getWheelRotation();
+        double angle = getGunTurnRemainingRadians() + PI / 20 * event.getWheelRotation();
         setTurnGunRightRadians(angle);
 
         log.endMethod();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onPaint(Graphics2D graphics) {
+        paintDestination(graphics);
+    }
+
+    /**
+     * 目的地を描画する。
+     *
+     * @param graphics グラフィックス。
+     */
+    private void paintDestination(Graphics2D graphics) {
+        int x = (int) destination.getX();
+        int y = (int) destination.getY();
+        int r = 15;
+        graphics.setColor(new Color(0xFF, 0x33, 0x33, 0xCC));
+        graphics.drawOval(x - r, y - r, r * 2, r * 2);
+        graphics.drawLine(x, y - r / 2, x, y + r / 2);
+        graphics.drawLine(x - r / 2, y, x + r / 2, y);
     }
 
 }
