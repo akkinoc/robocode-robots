@@ -1,6 +1,7 @@
 package akihyro;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import static java.awt.event.MouseEvent.BUTTON1;
@@ -128,6 +129,7 @@ public class GullWing extends AbstractRobot {
     @Override
     public void onPaint(Graphics2D graphics) {
         paintDestination(graphics);
+        paintBulletPower(graphics);
     }
 
     /**
@@ -143,6 +145,21 @@ public class GullWing extends AbstractRobot {
         graphics.drawOval(x - r, y - r, r * 2, r * 2);
         graphics.drawLine(x, y - r / 2, x, y + r / 2);
         graphics.drawLine(x - r / 2, y, x + r / 2, y);
+    }
+
+    /**
+     * 弾丸のパワーを描画する。
+     *
+     * @param graphics グラフィックス。
+     */
+    private void paintBulletPower(Graphics2D graphics) {
+        int x = (int) destination.getX();
+        int y = (int) destination.getY();
+        int r = 20;
+        Font f = graphics.getFont();
+        f = new Font(f.getName(), f.getStyle(), 10);
+        graphics.setFont(f);
+        graphics.drawString(String.format("Bullet Power: %s", bulletPower), x - r, y - r - f.getSize());
     }
 
 }
