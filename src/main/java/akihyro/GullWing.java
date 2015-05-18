@@ -3,8 +3,6 @@ package akihyro;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
-import static robocode.util.Utils.normalRelativeAngle;
-
 import akihyro.geo.Point;
 import akihyro.geo.PointToPoint;
 import akihyro.log.Log;
@@ -50,7 +48,7 @@ public class GullWing extends AbstractRobot {
         // 目的地へ向かう
         PointToPoint p2p = new PointToPoint(getPosition(), destination);
         setAhead(p2p.getDistance());
-        setTurnRightRadians(normalRelativeAngle(p2p.getDirection() - getHeadingRadians()));
+        setTurnRightRadians(p2p.getDirection().relativize(getHeadingRadians()).getAngle());
 
         execute();
         log.endMethod();

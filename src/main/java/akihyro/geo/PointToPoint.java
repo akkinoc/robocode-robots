@@ -3,8 +3,6 @@ package akihyro.geo;
 import static java.lang.Math.atan2;
 import static java.lang.Math.sqrt;
 
-import static robocode.util.Utils.normalRelativeAngle;
-
 import lombok.NonNull;
 import lombok.Value;
 
@@ -60,11 +58,11 @@ public class PointToPoint {
      *
      * @return 方向。
      */
-    public double getDirection() {
+    public Direction getDirection() {
         double x = getDistanceX();
         double y = getDistanceY();
-        double direction = atan2(x, y);
-        return normalRelativeAngle(direction);
+        double angle = atan2(x, y);
+        return new Direction(angle);
     }
 
 }

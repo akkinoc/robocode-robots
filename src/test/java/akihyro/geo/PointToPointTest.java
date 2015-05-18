@@ -134,7 +134,7 @@ public class PointToPointTest {
         Point from = new Point(0.0, 0.0);
         Point to = new Point(1.0, sqrt(3.0));
         PointToPoint p2p = new PointToPoint(from, to);
-        assertThat(p2p.getDirection(), closeTo(PI / 6.0, NEAR_DELTA));
+        assertThat(p2p.getDirection().getAngle(), closeTo(PI / 6.0, NEAR_DELTA));
     }
 
     /**
@@ -145,7 +145,7 @@ public class PointToPointTest {
         Point from = new Point(0.0, 0.0);
         Point to = new Point(-1.0, - sqrt(3.0));
         PointToPoint p2p = new PointToPoint(from, to);
-        assertThat(p2p.getDirection(), closeTo(- PI + PI / 6.0, NEAR_DELTA));
+        assertThat(p2p.getDirection().getAngle(), closeTo(- PI + PI / 6.0, NEAR_DELTA));
     }
 
     /**
@@ -156,7 +156,7 @@ public class PointToPointTest {
         Point from = new Point(1.2, 3.4);
         Point to = new Point(1.2, 3.4);
         PointToPoint p2p = new PointToPoint(from, to);
-        assertThat(p2p.getDirection(), closeTo(0.0, NEAR_DELTA));
+        assertThat(p2p.getDirection().getAngle(), closeTo(0.0, NEAR_DELTA));
     }
 
 }
