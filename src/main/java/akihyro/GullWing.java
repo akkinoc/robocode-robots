@@ -2,8 +2,13 @@ package akihyro;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import static java.awt.event.MouseEvent.BUTTON1;
+import static java.awt.event.MouseEvent.BUTTON3;
+import java.awt.event.MouseWheelEvent;
 import static java.lang.Math.PI;
 import static java.lang.Math.abs;
+
+import robocode.Rules;
 
 import akihyro.geo.Direction;
 import akihyro.geo.Line;
@@ -25,6 +30,11 @@ public class GullWing extends AbstractRobot {
      */
     private Point destination;
 
+    /**
+     * 弾丸のパワー。
+     */
+    private double bulletPower = 1.0;
+
     /** {@inheritDoc} */
     @Override
     protected void setup() {
@@ -37,6 +47,9 @@ public class GullWing extends AbstractRobot {
         setBulletColor(new Color(0xB4, 0x6A, 0x36));
         setScanColor(new Color(0xB4, 0x6A, 0x36));
 
+        // 砲台の回転を独立させる
+        setAdjustGunForRobotTurn(true);
+
         // 目的地を初期化する
         destination = getPosition();
 
@@ -46,10 +59,8 @@ public class GullWing extends AbstractRobot {
     /** {@inheritDoc} */
     @Override
     protected void tick() {
-        log.startMethod();
         setPathToDestination();
         execute();
-        log.endMethod();
     }
 
     /**
@@ -75,10 +86,39 @@ public class GullWing extends AbstractRobot {
     /** {@inheritDoc} */
     @Override
     public void onMouseMoved(MouseEvent event) {
-        log.startMethod(event);
 
         // 目的地をマウス位置にセットする
         destination = new Point(event.getX(), event.getY());
+
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onMouseClicked(MouseEvent event) {
+        log.startMethod(event);
+
+        // 左クリックで弾丸を発射する
+        // 右クリックで弾丸のパワーを切り替える
+        if (event.getButton() == BUTTON1) {
+            setFireBullet(bulletPower);
+        } else if (event.getButton() == BUTTON3) {
+            bulletPower += Rules.MAX_BULLET_POWER / 3.0;
+            if (bulletPower > Rules.MAX_BULLET_POWER) {
+                bulletPower = Rules.MAX_BULLET_POWER / 3.0;
+            }
+        }
+
+        log.endMethod();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onMouseWheelMoved(MouseWheelEvent event) {
+        log.startMethod(event);
+
+        // マウスホイールで砲台を回転させる
+        double angle = getGunTurnRemainingRadians() + PI / 10 * event.getWheelRotation();
+        setTurnGunRightRadians(angle);
 
         log.endMethod();
     }
