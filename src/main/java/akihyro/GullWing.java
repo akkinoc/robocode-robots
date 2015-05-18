@@ -2,9 +2,12 @@ package akihyro;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import static java.lang.Math.PI;
+import static java.lang.Math.abs;
 
+import akihyro.geo.Direction;
+import akihyro.geo.Line;
 import akihyro.geo.Point;
-import akihyro.geo.PointToPoint;
 import akihyro.log.Log;
 
 /**
@@ -44,14 +47,29 @@ public class GullWing extends AbstractRobot {
     @Override
     protected void tick() {
         log.startMethod();
-
-        // 目的地へ向かう
-        PointToPoint p2p = new PointToPoint(getPosition(), destination);
-        setAhead(p2p.getDistance());
-        setTurnRightRadians(p2p.getDirection().relativize(getHeadingRadians()).getAngle());
-
+        setPathToDestination();
         execute();
         log.endMethod();
+    }
+
+    /**
+     * 目的地へ向かうよう進路をセットする。
+     */
+    private void setPathToDestination() {
+
+        // 既に目的地に居るなら何もしない
+        Point position = getPosition();
+        if (position.nears(destination)) {
+            return;
+        }
+
+        // 進路をセットする
+        Line line = new Line(position, destination);
+        Direction direction = getDirection().relativize(new Direction(line.getAngle()));
+        double rightAngle = PI / 2.0;
+        setAhead(line.getDistance() * (rightAngle - abs(direction.getAngle())) / rightAngle);
+        setTurnRightRadians(direction.getAngle());
+
     }
 
     /** {@inheritDoc} */

@@ -4,6 +4,7 @@ import robocode.AdvancedRobot;
 
 import lombok.Getter;
 
+import akihyro.geo.Direction;
 import akihyro.geo.Point;
 import akihyro.geo.Size;
 import akihyro.log.Log;
@@ -57,6 +58,15 @@ public abstract class AbstractRobot extends AdvancedRobot {
      */
     public Size getSize() {
         return new Size(getWidth(), getHeight());
+    }
+
+    /**
+     * 方向を取得する。
+     *
+     * @return 方向。
+     */
+    public Direction getDirection() {
+        return new Direction(getHeadingRadians());
     }
 
 }
