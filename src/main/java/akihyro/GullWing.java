@@ -12,9 +12,9 @@ import static java.lang.Math.abs;
 
 import robocode.Rules;
 
-import akihyro.geo.Direction;
-import akihyro.geo.Line;
-import akihyro.geo.Point;
+import akihyro.geom.Direction;
+import akihyro.geom.Line;
+import akihyro.geom.Point;
 import akihyro.log.Log;
 
 /**
@@ -72,15 +72,15 @@ public class GullWing extends AbstractRobot {
 
         // 既に目的地に居るなら何もしない
         Point position = getPosition();
-        if (position.nears(destination)) {
+        if (position.isNear(destination)) {
             return;
         }
 
         // 進路をセットする
         Line line = new Line(position, destination);
         Direction direction = getDirection().relativize(new Direction(line.getAngle()));
-        double rightAngle = PI / 2.0;
-        setAhead(line.getDistance() * (rightAngle - abs(direction.getAngle())) / rightAngle);
+        double rate = 1.0 - 2.0 * abs(direction.getAngle()) / PI;
+        setAhead(line.getDistance() * rate);
         setTurnRightRadians(direction.getAngle());
 
     }

@@ -1,4 +1,4 @@
-package akihyro.geo;
+package akihyro.geom;
 
 import static java.lang.Math.atan2;
 import static java.lang.Math.sqrt;
@@ -8,7 +8,7 @@ import lombok.Value;
 
 /**
  * 直線。
- * 2つの点を結ぶ直線を示す。
+ * 始点から終点への直線を示す。
  */
 @Value
 public class Line {

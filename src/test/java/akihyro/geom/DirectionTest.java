@@ -1,4 +1,4 @@
-package akihyro.geo;
+package akihyro.geom;
 
 import static java.lang.Math.PI;
 
@@ -30,7 +30,7 @@ public class DirectionTest {
     @Test
     public void new_PI以上の角度はノーマライズされる() {
         Direction direction = new Direction(PI);
-        assertThat(direction.getAngle(), is(-PI));
+        assertThat(direction.getAngle(), is(- PI));
     }
 
     /**
@@ -38,28 +38,28 @@ public class DirectionTest {
      */
     @Test
     public void new_マイナスPI未満の角度はノーマライズされる() {
-        Direction direction = new Direction(-PI - 0.1);
-        assertThat(direction.getAngle(), is(PI - 0.1));
+        Direction direction = new Direction(- PI - NEAR_DELTA);
+        assertThat(direction.getAngle(), is(PI - NEAR_DELTA));
     }
 
     /**
-     * {@link Direction#nears(Direction)} をテストする。
+     * {@link Direction#isNear(Direction)} をテストする。
      */
     @Test
-    public void nears_2つの角度が誤差範囲内であればtrueを返す() {
+    public void isNear_2つの方向が近似であればtrueを返す() {
         Direction direction1 = new Direction(PI / 2.0);
-        Direction direction2 = new Direction(direction1.getAngle() + (NEAR_DELTA - NEAR_DELTA / 10));
-        assertThat(direction1.nears(direction2), is(true));
+        Direction direction2 = new Direction(direction1.getAngle() + (NEAR_DELTA - NEAR_DELTA / 10.0));
+        assertThat(direction1.isNear(direction2), is(true));
     }
 
     /**
-     * {@link Direction#nears(Direction)} をテストする。
+     * {@link Direction#isNear(Direction)} をテストする。
      */
     @Test
-    public void nears_2つの角度が誤差範囲外であればfalseを返す() {
+    public void isNear_角度が誤差範囲外の場合はfalseを返す() {
         Direction direction1 = new Direction(PI / 2.0);
         Direction direction2 = new Direction(direction1.getAngle() + NEAR_DELTA);
-        assertThat(direction1.nears(direction2), is(false));
+        assertThat(direction1.isNear(direction2), is(false));
     }
 
     /**
@@ -67,9 +67,10 @@ public class DirectionTest {
      */
     @Test
     public void relativize_相対化した方向を取得できる() {
-        Direction direction1 = new Direction(PI / 3.0);
-        Direction direction2 = new Direction(2.0 * PI / 3.0);
-        assertThat(direction1.relativize(direction2).getAngle(), closeTo(PI / 3.0, NEAR_DELTA));
+        Direction direction1 = new Direction(2.0 * PI / 3.0);
+        Direction direction2 = new Direction(direction1.getAngle() + PI / 3.0);
+        Direction direction = direction1.relativize(direction2);
+        assertThat(direction.getAngle(), closeTo(PI / 3.0, NEAR_DELTA));
     }
 
 }

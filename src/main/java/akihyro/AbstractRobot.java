@@ -4,9 +4,9 @@ import robocode.AdvancedRobot;
 
 import lombok.Getter;
 
-import akihyro.geo.Direction;
-import akihyro.geo.Point;
-import akihyro.geo.Size;
+import akihyro.geom.Dimension;
+import akihyro.geom.Direction;
+import akihyro.geom.Point;
 import akihyro.log.Log;
 
 /**
@@ -52,12 +52,12 @@ public abstract class AbstractRobot extends AdvancedRobot {
     }
 
     /**
-     * サイズを取得する。
+     * 寸法を取得する。
      *
-     * @return サイズ。
+     * @return 寸法。
      */
-    public Size getSize() {
-        return new Size(getWidth(), getHeight());
+    public Dimension getDimension() {
+        return new Dimension(getWidth(), getHeight());
     }
 
     /**

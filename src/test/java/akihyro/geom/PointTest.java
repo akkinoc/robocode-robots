@@ -1,4 +1,4 @@
-package akihyro.geo;
+package akihyro.geom;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -24,42 +24,42 @@ public class PointTest {
     }
 
     /**
-     * {@link Point#nears(Point)} をテストする。
+     * {@link Point#isNear(Point)} をテストする。
      */
     @Test
-    public void nears_2つの座標が誤差範囲内であればtrueを返す() {
+    public void isNear_2つの点が近似であればtrueを返す() {
         Point point1 = new Point(1.2, 3.4);
         Point point2 = new Point(
-                point1.getX() + (NEAR_DELTA - NEAR_DELTA / 10),
-                point1.getY() + (NEAR_DELTA - NEAR_DELTA / 10)
+                point1.getX() + (NEAR_DELTA - NEAR_DELTA / 10.0),
+                point1.getY() + (NEAR_DELTA - NEAR_DELTA / 10.0)
         );
-        assertThat(point1.nears(point2), is(true));
+        assertThat(point1.isNear(point2), is(true));
     }
 
     /**
-     * {@link Point#nears(Point)} をテストする。
+     * {@link Point#isNear(Point)} をテストする。
      */
     @Test
-    public void nears_X座標が誤差範囲外であればfalseを返す() {
+    public void isNear_X座標が誤差範囲外の場合はfalseを返す() {
         Point point1 = new Point(1.2, 3.4);
         Point point2 = new Point(
                 point1.getX() + NEAR_DELTA,
-                point1.getY() + (NEAR_DELTA - NEAR_DELTA / 10)
+                point1.getY() + (NEAR_DELTA - NEAR_DELTA / 10.0)
         );
-        assertThat(point1.nears(point2), is(false));
+        assertThat(point1.isNear(point2), is(false));
     }
 
     /**
-     * {@link Point#nears(Point)} をテストする。
+     * {@link Point#isNear(Point)} をテストする。
      */
     @Test
-    public void nears_Y座標が誤差範囲外であればfalseを返す() {
+    public void isNear_Y座標が誤差範囲外の場合はfalseを返す() {
         Point point1 = new Point(1.2, 3.4);
         Point point2 = new Point(
-                point1.getX() + (NEAR_DELTA - NEAR_DELTA / 10),
+                point1.getX() + (NEAR_DELTA - NEAR_DELTA / 10.0),
                 point1.getY() + NEAR_DELTA
         );
-        assertThat(point1.nears(point2), is(false));
+        assertThat(point1.isNear(point2), is(false));
     }
 
 }
