@@ -1,0 +1,4 @@
+/**
+ * モニタ。
+ */
+package akihyro.monitor;
