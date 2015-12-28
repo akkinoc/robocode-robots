@@ -5,7 +5,7 @@ import lombok.NonNull;
 import robocode.util.Utils;
 
 /**
- * 点。
+ * ポイント。
  */
 @Data
 public class Point {
@@ -21,10 +21,10 @@ public class Point {
     private final double y;
 
     /**
-     * 2つの点が近似かどうか判定する。
+     * 2つのポイントが近似かどうか判定する。
      *
-     * @param point 比較対象の点。
-     * @return 2つの点が近似かどうか。
+     * @param point 比較対象のポイント。
+     * @return 2つのポイントが近似かどうか。
      */
     public boolean nears(@NonNull Point point) {
         return Utils.isNear(x, point.x) && Utils.isNear(y, point.y);

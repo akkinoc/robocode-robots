@@ -13,7 +13,7 @@ public class PointTest {
      * {@link Point#Point(double, double)} をテストする。
      */
     @Test
-    public void new_座標を指定してインスタンスを生成できる() {
+    public void new_インスタンスを生成できる() {
         Point point = new Point(1.2, 3.4);
         assertThat(point.getX()).isEqualTo(1.2);
         assertThat(point.getY()).isEqualTo(3.4);
@@ -23,7 +23,7 @@ public class PointTest {
      * {@link Point#nears(Point)} をテストする。
      */
     @Test
-    public void nears_2つの点が近似であればtrueを返す() {
+    public void nears_閾値内の場合はtrueを返す() {
         Point point1 = new Point(1.2, 3.4);
         Point point2 = new Point(
                 point1.getX() + (NEAR_DELTA - NEAR_DELTA / 10.0),
@@ -36,7 +36,7 @@ public class PointTest {
      * {@link Point#nears(Point)} をテストする。
      */
     @Test
-    public void nears_X座標が誤差範囲外の場合はfalseを返す() {
+    public void nears_X座標が閾値外の場合はfalseを返す() {
         Point point1 = new Point(1.2, 3.4);
         Point point2 = new Point(
                 point1.getX() + NEAR_DELTA,
@@ -49,7 +49,7 @@ public class PointTest {
      * {@link Point#nears(Point)} をテストする。
      */
     @Test
-    public void nears_Y座標が誤差範囲外の場合はfalseを返す() {
+    public void nears_Y座標が閾値外の場合はfalseを返す() {
         Point point1 = new Point(1.2, 3.4);
         Point point2 = new Point(
                 point1.getX() + (NEAR_DELTA - NEAR_DELTA / 10.0),
