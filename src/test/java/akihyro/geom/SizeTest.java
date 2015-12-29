@@ -20,6 +20,16 @@ public class SizeTest {
     }
 
     /**
+     * {@link Size#union(Size)} をテストする。
+     */
+    @Test
+    public void union_結合できる() {
+        Size size1 = new Size(1.2, 3.4);
+        Size size2 = new Size(5.6, 7.8);
+        assertThat(size1.union(size2)).isEqualTo(new Size(6.8, 11.2));
+    }
+
+    /**
      * {@link Size#unionHorizontal(Size)} をテストする。
      */
     @Test

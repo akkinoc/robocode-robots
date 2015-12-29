@@ -26,6 +26,16 @@ public class Size {
     protected final double height;
 
     /**
+     * 2つのサイズを結合する。
+     *
+     * @param size 結合するサイズ。
+     * @return 結合後のサイズ。
+     */
+    public Size union(@NonNull Size size) {
+        return new Size(width + size.width, height + size.height);
+    }
+
+    /**
      * 2つのサイズを水平方向に結合する。
      *
      * @param size 結合するサイズ。
