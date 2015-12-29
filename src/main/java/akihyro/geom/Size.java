@@ -11,6 +11,11 @@ import robocode.util.Utils;
 public class Size {
 
     /**
+     * 空のサイズ。
+     */
+    public static final Size EMPTY = new Size(0.0, 0.0);
+
+    /**
      * 幅。
      */
     protected final double width;

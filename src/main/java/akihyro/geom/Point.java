@@ -11,6 +11,11 @@ import robocode.util.Utils;
 public class Point {
 
     /**
+     * 原点。
+     */
+    public static final Point ORIGIN = new Point(0.0, 0.0);
+
+    /**
      * X座標。
      */
     protected final double x;
