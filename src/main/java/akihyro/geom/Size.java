@@ -26,6 +26,26 @@ public class Size {
     protected final double height;
 
     /**
+     * 2つのサイズを水平方向に結合する。
+     *
+     * @param size 結合するサイズ。
+     * @return 結合後のサイズ。
+     */
+    public Size unionHorizontal(@NonNull Size size) {
+        return new Size(width + size.width, Math.max(height, size.height));
+    }
+
+    /**
+     * 2つのサイズを垂直方向に結合する。
+     *
+     * @param size 結合するサイズ。
+     * @return 結合後のサイズ。
+     */
+    public Size unionVertical(@NonNull Size size) {
+        return new Size(Math.max(width, size.width), height + size.height);
+    }
+
+    /**
      * 2つのサイズが近似かどうか判定する。
      *
      * @param size 比較対象のサイズ。
