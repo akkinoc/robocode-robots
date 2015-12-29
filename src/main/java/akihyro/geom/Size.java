@@ -13,12 +13,12 @@ public class Size {
     /**
      * 幅。
      */
-    private final double width;
+    protected final double width;
 
     /**
      * 高さ。
      */
-    private final double height;
+    protected final double height;
 
     /**
      * 2つのサイズが近似かどうか判定する。

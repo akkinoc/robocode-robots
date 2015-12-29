@@ -13,12 +13,12 @@ public class Point {
     /**
      * X座標。
      */
-    private final double x;
+    protected final double x;
 
     /**
      * Y座標。
      */
-    private final double y;
+    protected final double y;
 
     /**
      * 2つのポイントが近似かどうか判定する。
