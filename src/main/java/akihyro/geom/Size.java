@@ -31,7 +31,7 @@ public class Size {
      * @param size 結合するサイズ。
      * @return 結合後のサイズ。
      */
-    public Size union(@NonNull Size size) {
+    public Size plus(@NonNull Size size) {
         return new Size(width + size.width, height + size.height);
     }
 
@@ -41,7 +41,7 @@ public class Size {
      * @param size 結合するサイズ。
      * @return 結合後のサイズ。
      */
-    public Size unionHorizontal(@NonNull Size size) {
+    public Size plusHorizontal(@NonNull Size size) {
         return new Size(width + size.width, Math.max(height, size.height));
     }
 
@@ -51,7 +51,7 @@ public class Size {
      * @param size 結合するサイズ。
      * @return 結合後のサイズ。
      */
-    public Size unionVertical(@NonNull Size size) {
+    public Size plusVertical(@NonNull Size size) {
         return new Size(Math.max(width, size.width), height + size.height);
     }
 
