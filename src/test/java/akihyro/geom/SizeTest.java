@@ -20,6 +20,16 @@ public class SizeTest {
     }
 
     /**
+     * {@link Size#union(Size)} をテストする。
+     */
+    @Test
+    public void union_和集合を採れる() {
+        Size size1 = new Size(1.2, 7.8);
+        Size size2 = new Size(5.6, 3.4);
+        assertThat(size1.union(size2)).isEqualTo(new Size(5.6, 7.8));
+    }
+
+    /**
      * {@link Size#plus(Size)} をテストする。
      */
     @Test

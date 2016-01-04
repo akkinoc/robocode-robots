@@ -26,6 +26,16 @@ public class Size {
     protected final double height;
 
     /**
+     * 2つのサイズの和集合を採る。
+     *
+     * @param size 和集合を採るサイズ。
+     * @return 和集合。
+     */
+    public Size union(@NonNull Size size) {
+        return new Size(Math.max(width, size.width), Math.max(height, size.height));
+    }
+
+    /**
      * 2つのサイズを結合する。
      *
      * @param size 結合するサイズ。
