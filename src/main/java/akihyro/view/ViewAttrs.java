@@ -1,5 +1,10 @@
 package akihyro.view;
 
+import java.util.ArrayList;
+import static java.util.Arrays.asList;
+import static java.util.Collections.unmodifiableList;
+import java.util.List;
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -17,6 +22,28 @@ public class ViewAttrs {
      */
     public static <T> ViewAttr<T> of(T value) {
         return graphics -> value;
+    }
+
+    /**
+     * 固定値のリストを返すビュー属性を生成する。
+     *
+     * @param <T> リスト属性値の要素のタイプ。
+     * @param values リスト属性値。
+     * @return ビュー属性。
+     */
+    public static <T> ViewAttr<List<T>> ofList(@NonNull T... values) {
+        return ofList(asList(values));
+    }
+
+    /**
+     * 固定値のリストを返すビュー属性を生成する。
+     *
+     * @param <T> リスト属性値の要素のタイプ。
+     * @param values リスト属性値。
+     * @return ビュー属性。
+     */
+    public static <T> ViewAttr<List<T>> ofList(@NonNull List<T> values) {
+        return of(unmodifiableList(new ArrayList<>(values)));
     }
 
     /**
