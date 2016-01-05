@@ -18,12 +18,12 @@ public class Point {
     /**
      * X座標。
      */
-    protected final double x;
+    private final double x;
 
     /**
      * Y座標。
      */
-    protected final double y;
+    private final double y;
 
     /**
      * 近似かどうか判定する。
@@ -32,7 +32,8 @@ public class Point {
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Point point) {
-        return Utils.isNear(x, point.x) && Utils.isNear(y, point.y);
+        return Utils.isNear(getX(), point.getX())
+                && Utils.isNear(getY(), point.getY());
     }
 
 }

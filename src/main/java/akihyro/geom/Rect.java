@@ -13,13 +13,13 @@ public class Rect {
      * ポイント (左下隅)。
      */
     @NonNull
-    protected final Point point;
+    private final Point point;
 
     /**
      * サイズ。
      */
     @NonNull
-    protected final Size size;
+    private final Size size;
 
     /**
      * 近似かどうか判定する。
@@ -28,7 +28,8 @@ public class Rect {
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Rect rect) {
-        return point.nears(rect.point) && size.nears(rect.size);
+        return getPoint().nears(rect.getPoint())
+                && getSize().nears(rect.getSize());
     }
 
 }

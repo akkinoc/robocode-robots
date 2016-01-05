@@ -18,12 +18,12 @@ public class Size {
     /**
      * 幅。
      */
-    protected final double width;
+    private final double width;
 
     /**
      * 高さ。
      */
-    protected final double height;
+    private final double height;
 
     /**
      * 空かどうか判定する。
@@ -31,7 +31,7 @@ public class Size {
      * @return 空かどうか。
      */
     public boolean isEmpty() {
-        return width == 0.0 || height == 0.0;
+        return getWidth() == 0.0 || getHeight() == 0.0;
     }
 
     /**
@@ -41,7 +41,10 @@ public class Size {
      * @return 和集合を表すサイズ。
      */
     public Size union(@NonNull Size size) {
-        return new Size(Math.max(width, size.width), Math.max(height, size.height));
+        return new Size(
+                Math.max(getWidth(), size.getWidth()),
+                Math.max(getHeight(), size.getHeight())
+        );
     }
 
     /**
@@ -51,7 +54,10 @@ public class Size {
      * @return 積集合を表すサイズ。
      */
     public Size intersect(@NonNull Size size) {
-        return new Size(Math.min(width, size.width), Math.min(height, size.height));
+        return new Size(
+                Math.min(getWidth(), size.getWidth()),
+                Math.min(getHeight(), size.getHeight())
+        );
     }
 
     /**
@@ -61,7 +67,10 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plus(@NonNull Size size) {
-        return new Size(width + size.width, height + size.height);
+        return new Size(
+                getWidth() + size.getWidth(),
+                getHeight() + size.getHeight()
+        );
     }
 
     /**
@@ -71,7 +80,10 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plusWidth(double value) {
-        return new Size(width + value, height);
+        return new Size(
+                getWidth() + value,
+                getHeight()
+        );
     }
 
     /**
@@ -81,7 +93,10 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plusHeight(double value) {
-        return new Size(width, height + value);
+        return new Size(
+                getWidth(),
+                getHeight() + value
+        );
     }
 
     /**
@@ -91,7 +106,10 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plusHorizontal(@NonNull Size size) {
-        return new Size(width + size.width, Math.max(height, size.height));
+        return new Size(
+                getWidth() + size.getWidth(),
+                Math.max(getHeight(), size.getHeight())
+        );
     }
 
     /**
@@ -101,7 +119,10 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plusVertical(@NonNull Size size) {
-        return new Size(Math.max(width, size.width), height + size.height);
+        return new Size(
+                Math.max(getWidth(), size.getWidth()),
+                getHeight() + size.getHeight()
+        );
     }
 
     /**
@@ -111,7 +132,8 @@ public class Size {
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Size size) {
-        return Utils.isNear(width, size.width) && Utils.isNear(height, size.height);
+        return Utils.isNear(getWidth(), size.getWidth())
+                && Utils.isNear(getHeight(), size.getHeight());
     }
 
 }
