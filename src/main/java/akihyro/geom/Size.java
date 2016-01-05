@@ -31,7 +31,7 @@ public class Size {
      * @return 空かどうか。
      */
     public boolean isEmpty() {
-        return getWidth() == 0.0 || getHeight() == 0.0;
+        return width() == 0.0 || height() == 0.0;
     }
 
     /**
@@ -42,8 +42,8 @@ public class Size {
      */
     public Size union(@NonNull Size size) {
         return new Size(
-                Math.max(getWidth(), size.getWidth()),
-                Math.max(getHeight(), size.getHeight())
+                Math.max(width(), size.width()),
+                Math.max(height(), size.height())
         );
     }
 
@@ -55,8 +55,8 @@ public class Size {
      */
     public Size intersect(@NonNull Size size) {
         return new Size(
-                Math.min(getWidth(), size.getWidth()),
-                Math.min(getHeight(), size.getHeight())
+                Math.min(width(), size.width()),
+                Math.min(height(), size.height())
         );
     }
 
@@ -68,8 +68,8 @@ public class Size {
      */
     public Size plus(@NonNull Size size) {
         return new Size(
-                getWidth() + size.getWidth(),
-                getHeight() + size.getHeight()
+                width() + size.width(),
+                height() + size.height()
         );
     }
 
@@ -81,8 +81,8 @@ public class Size {
      */
     public Size plusWidth(double value) {
         return new Size(
-                getWidth() + value,
-                getHeight()
+                width() + value,
+                height()
         );
     }
 
@@ -94,8 +94,8 @@ public class Size {
      */
     public Size plusHeight(double value) {
         return new Size(
-                getWidth(),
-                getHeight() + value
+                width(),
+                height() + value
         );
     }
 
@@ -107,8 +107,8 @@ public class Size {
      */
     public Size plusHorizontal(@NonNull Size size) {
         return new Size(
-                getWidth() + size.getWidth(),
-                Math.max(getHeight(), size.getHeight())
+                width() + size.width(),
+                Math.max(height(), size.height())
         );
     }
 
@@ -120,8 +120,8 @@ public class Size {
      */
     public Size plusVertical(@NonNull Size size) {
         return new Size(
-                Math.max(getWidth(), size.getWidth()),
-                getHeight() + size.getHeight()
+                Math.max(width(), size.width()),
+                height() + size.height()
         );
     }
 
@@ -132,8 +132,8 @@ public class Size {
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Size size) {
-        return Utils.isNear(getWidth(), size.getWidth())
-                && Utils.isNear(getHeight(), size.getHeight());
+        return Utils.isNear(width(), size.width())
+                && Utils.isNear(height(), size.height());
     }
 
 }

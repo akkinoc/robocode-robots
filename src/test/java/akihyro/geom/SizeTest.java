@@ -15,8 +15,8 @@ public class SizeTest {
     @Test
     public void new_インスタンスを生成できる() {
         Size size = new Size(1.2, 3.4);
-        assertThat(size.getWidth()).isEqualTo(1.2);
-        assertThat(size.getHeight()).isEqualTo(3.4);
+        assertThat(size.width()).isEqualTo(1.2);
+        assertThat(size.height()).isEqualTo(3.4);
     }
 
     /**
@@ -121,8 +121,8 @@ public class SizeTest {
     public void nears_閾値内の場合はtrueを返す() {
         Size size1 = new Size(1.2, 3.4);
         Size size2 = new Size(
-                size1.getWidth() + (NEAR_DELTA - NEAR_DELTA / 10.0),
-                size1.getHeight() + (NEAR_DELTA - NEAR_DELTA / 10.0)
+                size1.width() + (NEAR_DELTA - NEAR_DELTA / 10.0),
+                size1.height() + (NEAR_DELTA - NEAR_DELTA / 10.0)
         );
         assertThat(size1.nears(size2)).isTrue();
     }
@@ -134,8 +134,8 @@ public class SizeTest {
     public void nears_幅が閾値外の場合はfalseを返す() {
         Size size1 = new Size(1.2, 3.4);
         Size size2 = new Size(
-                size1.getWidth() + NEAR_DELTA,
-                size1.getHeight() + (NEAR_DELTA - NEAR_DELTA / 10.0)
+                size1.width() + NEAR_DELTA,
+                size1.height() + (NEAR_DELTA - NEAR_DELTA / 10.0)
         );
         assertThat(size1.nears(size2)).isFalse();
     }
@@ -147,8 +147,8 @@ public class SizeTest {
     public void nears_高さが閾値外の場合はfalseを返す() {
         Size size1 = new Size(1.2, 3.4);
         Size size2 = new Size(
-                size1.getWidth() + (NEAR_DELTA - NEAR_DELTA / 10.0),
-                size1.getHeight() + NEAR_DELTA
+                size1.width() + (NEAR_DELTA - NEAR_DELTA / 10.0),
+                size1.height() + NEAR_DELTA
         );
         assertThat(size1.nears(size2)).isFalse();
     }

@@ -28,8 +28,8 @@ public class Rect {
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Rect rect) {
-        return getPoint().nears(rect.getPoint())
-                && getSize().nears(rect.getSize());
+        return point().nears(rect.point())
+                && size().nears(rect.size());
     }
 
 }

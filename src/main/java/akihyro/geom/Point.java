@@ -32,8 +32,8 @@ public class Point {
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Point point) {
-        return Utils.isNear(getX(), point.getX())
-                && Utils.isNear(getY(), point.getY());
+        return Utils.isNear(x(), point.x())
+                && Utils.isNear(y(), point.y());
     }
 
 }
