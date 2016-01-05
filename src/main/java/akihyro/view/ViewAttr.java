@@ -30,18 +30,19 @@ public interface ViewAttr<T> {
     }
 
     /**
-     * 未定義な属性値を表すビュー属性を生成する。
-     * 未定義な属性値を取得しようとすると {@link UndefException} をスローする。
+     * 未定義を表すビュー属性を生成する。
      *
      * @param <T> 属性値のタイプ。
      * @return ビュー属性。
      */
     static <T> ViewAttr<T> undef() {
-        throw new UndefException();
+        return graphics -> {
+            throw new UndefException();
+        };
     }
 
     /**
-     * 未定義なビュー属性値へアクセスしたときに発生する例外。
+     * 未定義例外。
      */
     static class UndefException extends RuntimeException {
 
