@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
  * @param <T> 属性値のタイプ。
  */
 @FunctionalInterface
-public interface ViewAttribute<T> {
+public interface ViewAttr<T> {
 
     /**
      * 属性値を取得する。
@@ -25,30 +25,30 @@ public interface ViewAttribute<T> {
      * @param value 属性値。
      * @return ビュー属性。
      */
-    static <T> ViewAttribute<T> of(T value) {
+    static <T> ViewAttr<T> of(T value) {
         return graphics -> value;
     }
 
     /**
-     * 未定義な属性値を示すビュー属性を生成する。
-     * 未定義な属性値を取得しようとすると {@link UndefinedException} をスローする。
+     * 未定義な属性値を表すビュー属性を生成する。
+     * 未定義な属性値を取得しようとすると {@link UndefException} をスローする。
      *
      * @param <T> 属性値のタイプ。
      * @return ビュー属性。
      */
-    static <T> ViewAttribute<T> undefined() {
-        throw new UndefinedException();
+    static <T> ViewAttr<T> undef() {
+        throw new UndefException();
     }
 
     /**
      * 未定義なビュー属性値へアクセスしたときに発生する例外。
      */
-    public static class UndefinedException extends RuntimeException {
+    static class UndefException extends RuntimeException {
 
         /**
          * コンストラクタ。
          */
-        public UndefinedException() {
+        public UndefException() {
             super("ViewAttribute is undefined.");
         }
 
