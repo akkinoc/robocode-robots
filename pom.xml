@@ -150,6 +150,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <defaultMethods>true</defaultMethods>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
