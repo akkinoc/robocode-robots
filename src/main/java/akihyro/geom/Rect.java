@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NonNull;
 
 /**
- * 長方形。
+ * 矩形。
  */
 @Data
 public class Rect {
@@ -22,10 +22,10 @@ public class Rect {
     protected final Size size;
 
     /**
-     * 2つの長方形が近似かどうか判定する。
+     * 近似かどうか判定する。
      *
-     * @param rect 比較対象の長方形。
-     * @return 2つの長方形が近似かどうか。
+     * @param rect 矩形。
+     * @return 近似かどうか。
      */
     public boolean nears(@NonNull Rect rect) {
         return point.nears(rect.point) && size.nears(rect.size);

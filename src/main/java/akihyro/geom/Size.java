@@ -26,50 +26,89 @@ public class Size {
     protected final double height;
 
     /**
-     * 2つのサイズの和集合を採る。
+     * 空かどうか判定する。
      *
-     * @param size 和集合を採るサイズ。
-     * @return 和集合。
+     * @return 空かどうか。
+     */
+    public boolean isEmpty() {
+        return width == 0.0 || height == 0.0;
+    }
+
+    /**
+     * 和集合を採る。
+     *
+     * @param size サイズ。
+     * @return 和集合を表すサイズ。
      */
     public Size union(@NonNull Size size) {
         return new Size(Math.max(width, size.width), Math.max(height, size.height));
     }
 
     /**
-     * 2つのサイズを結合する。
+     * 積集合を採る。
      *
-     * @param size 結合するサイズ。
-     * @return 結合後のサイズ。
+     * @param size サイズ。
+     * @return 積集合を表すサイズ。
+     */
+    public Size intersect(@NonNull Size size) {
+        return new Size(Math.min(width, size.width), Math.min(height, size.height));
+    }
+
+    /**
+     * 加算する。
+     *
+     * @param size サイズ。
+     * @return 加算後のサイズ。
      */
     public Size plus(@NonNull Size size) {
         return new Size(width + size.width, height + size.height);
     }
 
     /**
-     * 2つのサイズを水平方向に結合する。
+     * 幅を加算する。
      *
-     * @param size 結合するサイズ。
-     * @return 結合後のサイズ。
+     * @param value 幅。
+     * @return 加算後のサイズ。
+     */
+    public Size plusWidth(double value) {
+        return new Size(width + value, height);
+    }
+
+    /**
+     * 高さを加算する。
+     *
+     * @param value 高さ。
+     * @return 加算後のサイズ。
+     */
+    public Size plusHeight(double value) {
+        return new Size(width, height + value);
+    }
+
+    /**
+     * 水平方向に加算する。
+     *
+     * @param size サイズ。
+     * @return 加算後のサイズ。
      */
     public Size plusHorizontal(@NonNull Size size) {
         return new Size(width + size.width, Math.max(height, size.height));
     }
 
     /**
-     * 2つのサイズを垂直方向に結合する。
+     * 垂直方向に加算する。
      *
-     * @param size 結合するサイズ。
-     * @return 結合後のサイズ。
+     * @param size サイズ。
+     * @return 加算後のサイズ。
      */
     public Size plusVertical(@NonNull Size size) {
         return new Size(Math.max(width, size.width), height + size.height);
     }
 
     /**
-     * 2つのサイズが近似かどうか判定する。
+     * 近似かどうか判定する。
      *
-     * @param size 比較対象のサイズ。
-     * @return 2つのサイズが近似かどうか。
+     * @param size サイズ。
+     * @return 近似かどうか。
      */
     public boolean nears(@NonNull Size size) {
         return Utils.isNear(width, size.width) && Utils.isNear(height, size.height);

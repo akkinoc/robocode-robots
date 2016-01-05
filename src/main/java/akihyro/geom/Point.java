@@ -26,10 +26,10 @@ public class Point {
     protected final double y;
 
     /**
-     * 2つのポイントが近似かどうか判定する。
+     * 近似かどうか判定する。
      *
-     * @param point 比較対象のポイント。
-     * @return 2つのポイントが近似かどうか。
+     * @param point ポイント。
+     * @return 近似かどうか。
      */
     public boolean nears(@NonNull Point point) {
         return Utils.isNear(x, point.x) && Utils.isNear(y, point.y);
