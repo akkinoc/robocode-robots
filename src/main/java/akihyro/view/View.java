@@ -17,7 +17,7 @@ public abstract class View {
     @NonNull
     @Getter
     @Setter
-    private ViewAttr<Size> size = ViewAttr.undef();
+    private ViewAttr<Size> size = ViewAttrs.undef();
 
     /**
      * 描画する。

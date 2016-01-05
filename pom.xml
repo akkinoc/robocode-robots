@@ -167,15 +167,13 @@
                 <version>2.1.0</version>
                 <executions>
                     <execution>
+                        <id>process</id>
                         <goals>
                             <goal>process-main</goal>
                             <goal>process-test</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <defaultMethods>true</defaultMethods>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
