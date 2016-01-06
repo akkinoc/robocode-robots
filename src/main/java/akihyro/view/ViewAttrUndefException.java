@@ -7,9 +7,11 @@ public class ViewAttrUndefException extends RuntimeException {
 
     /**
      * コンストラクタ。
+     *
+     * @param message メッセージ。
      */
-    public ViewAttrUndefException() {
-        super("ViewAttr is undefined");
+    public ViewAttrUndefException(String message) {
+        super(message);
     }
 
 }

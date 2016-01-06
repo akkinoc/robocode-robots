@@ -41,7 +41,7 @@ public class ViewAttrs {
      */
     public static <T> ViewAttr<T> undef() {
         return graphics -> {
-            throw new ViewAttrUndefException();
+            throw new ViewAttrUndefException("ViewAttr is undefined");
         };
     }
 
