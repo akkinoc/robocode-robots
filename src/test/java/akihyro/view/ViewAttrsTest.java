@@ -20,20 +20,20 @@ public class ViewAttrsTest {
     }
 
     /**
-     * {@link ViewAttrs#ofList(Object...)} をテストする。
+     * {@link ViewAttrs#listOf(Object...)} をテストする。
      */
     @Test
     public void ofList_固定値のリストを返すビュー属性が生成できる() {
-        ViewAttr<List<Integer>> attr = ViewAttrs.ofList(12, 34, 56);
+        ViewAttr<List<Integer>> attr = ViewAttrs.listOf(12, 34, 56);
         assertThat(attr.get(null)).containsExactly(12, 34, 56);
     }
 
     /**
-     * {@link ViewAttrs#ofList(Object...)} をテストする。
+     * {@link ViewAttrs#listOf(Object...)} をテストする。
      */
     @Test
-    public void ofList_空のリストを返すビュー属性が生成できる() {
-        ViewAttr<List<Integer>> attr = ViewAttrs.ofList();
+    public void listOf_空のリストを返すビュー属性が生成できる() {
+        ViewAttr<List<Integer>> attr = ViewAttrs.listOf();
         assertThat(attr.get(null)).isEmpty();
     }
 

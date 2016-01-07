@@ -23,13 +23,15 @@ public class ViewAttrs {
     }
 
     /**
-     * 固定値のリストを返すビュー属性を生成する。
+     * 固定値を返すビュー属性を生成する。
      *
-     * @param <T> リスト属性値の要素のタイプ。
-     * @param values リスト属性値。
+     * @param <T> 属性値のリスト要素タイプ。
+     * @param values 属性値。
      * @return ビュー属性。
      */
-    public static <T> ViewAttr<List<T>> ofList(@NonNull T... values) {
+    @SafeVarargs
+    @SuppressWarnings("varargs")
+    public static <T> ViewAttr<List<T>> listOf(@NonNull T... values) {
         return of(asList(values));
     }
 
