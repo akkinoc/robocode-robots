@@ -26,8 +26,8 @@ public class PointTest {
     public void nears_閾値内の場合はtrueを返す() {
         Point point1 = new Point(1.2, 3.4);
         Point point2 = new Point(
-                point1.x() + (NEAR_DELTA - NEAR_DELTA / 10.0),
-                point1.y() + (NEAR_DELTA - NEAR_DELTA / 10.0)
+                point1.x() + NEAR_DELTA / 2.0,
+                point1.y() + NEAR_DELTA / 2.0
         );
         assertThat(point1.nears(point2)).isTrue();
     }
@@ -39,8 +39,8 @@ public class PointTest {
     public void nears_X座標が閾値外の場合はfalseを返す() {
         Point point1 = new Point(1.2, 3.4);
         Point point2 = new Point(
-                point1.x() + NEAR_DELTA,
-                point1.y() + (NEAR_DELTA - NEAR_DELTA / 10.0)
+                point1.x() + NEAR_DELTA * 2.0,
+                point1.y() + NEAR_DELTA / 2.0
         );
         assertThat(point1.nears(point2)).isFalse();
     }
@@ -52,8 +52,8 @@ public class PointTest {
     public void nears_Y座標が閾値外の場合はfalseを返す() {
         Point point1 = new Point(1.2, 3.4);
         Point point2 = new Point(
-                point1.x() + (NEAR_DELTA - NEAR_DELTA / 10.0),
-                point1.y() + NEAR_DELTA
+                point1.x() + NEAR_DELTA / 2.0,
+                point1.y() + NEAR_DELTA * 2.0
         );
         assertThat(point1.nears(point2)).isFalse();
     }

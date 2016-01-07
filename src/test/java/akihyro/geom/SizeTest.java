@@ -121,8 +121,8 @@ public class SizeTest {
     public void nears_閾値内の場合はtrueを返す() {
         Size size1 = new Size(1.2, 3.4);
         Size size2 = new Size(
-                size1.width() + (NEAR_DELTA - NEAR_DELTA / 10.0),
-                size1.height() + (NEAR_DELTA - NEAR_DELTA / 10.0)
+                size1.width() + NEAR_DELTA / 2.0,
+                size1.height() + NEAR_DELTA / 2.0
         );
         assertThat(size1.nears(size2)).isTrue();
     }
@@ -134,8 +134,8 @@ public class SizeTest {
     public void nears_幅が閾値外の場合はfalseを返す() {
         Size size1 = new Size(1.2, 3.4);
         Size size2 = new Size(
-                size1.width() + NEAR_DELTA,
-                size1.height() + (NEAR_DELTA - NEAR_DELTA / 10.0)
+                size1.width() + NEAR_DELTA * 2.0,
+                size1.height() + NEAR_DELTA / 2.0
         );
         assertThat(size1.nears(size2)).isFalse();
     }
@@ -147,8 +147,8 @@ public class SizeTest {
     public void nears_高さが閾値外の場合はfalseを返す() {
         Size size1 = new Size(1.2, 3.4);
         Size size2 = new Size(
-                size1.width() + (NEAR_DELTA - NEAR_DELTA / 10.0),
-                size1.height() + NEAR_DELTA
+                size1.width() + NEAR_DELTA / 2.0,
+                size1.height() + NEAR_DELTA * 2.0
         );
         assertThat(size1.nears(size2)).isFalse();
     }
