@@ -95,12 +95,12 @@ public class Size {
     /**
      * 幅を加算する。
      *
-     * @param value 幅。
+     * @param width 幅。
      * @return 加算後のサイズ。
      */
-    public Size plusWidth(double value) {
+    public Size plusWidth(double width) {
         return of(
-                width() + value,
+                width() + width,
                 height()
         );
     }
@@ -108,13 +108,13 @@ public class Size {
     /**
      * 高さを加算する。
      *
-     * @param value 高さ。
+     * @param height 高さ。
      * @return 加算後のサイズ。
      */
-    public Size plusHeight(double value) {
+    public Size plusHeight(double height) {
         return of(
                 width(),
-                height() + value
+                height() + height
         );
     }
 

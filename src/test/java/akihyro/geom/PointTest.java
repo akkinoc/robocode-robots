@@ -30,6 +30,36 @@ public class PointTest {
     }
 
     /**
+     * {@link Point#offset(double, double)} をテストする。
+     */
+    @Test
+    public void offset_オフセットを採れる() {
+        Point point = Point.of(1.2, 3.4).offset(5.6, 7.8);
+        assertThat(point.x()).isCloseTo(6.7, within(0.1));
+        assertThat(point.y()).isCloseTo(11.2, within(0.1));
+    }
+
+    /**
+     * {@link Point#offsetX(double)} をテストする。
+     */
+    @Test
+    public void offsetX_X座標のオフセットを採れる() {
+        Point point = Point.of(1.2, 3.4).offsetX(5.6);
+        assertThat(point.x()).isCloseTo(6.7, within(0.1));
+        assertThat(point.y()).isCloseTo(3.4, within(0.1));
+    }
+
+    /**
+     * {@link Point#offsetY(double)} をテストする。
+     */
+    @Test
+    public void offsetY_Y座標のオフセットを採れる() {
+        Point point = Point.of(1.2, 3.4).offsetY(7.8);
+        assertThat(point.x()).isCloseTo(1.2, within(0.1));
+        assertThat(point.y()).isCloseTo(11.2, within(0.1));
+    }
+
+    /**
      * {@link Point#nears(Point)} をテストする。
      */
     @Test

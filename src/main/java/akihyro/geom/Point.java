@@ -43,6 +43,37 @@ public class Point {
     }
 
     /**
+     * オフセットを採る。
+     *
+     * @param x X座標の移動量。
+     * @param y Y座標の移動量。
+     * @return オフセットしたポイント。
+     */
+    public Point offset(double x, double y) {
+        return of(x() + x, y() + y);
+    }
+
+    /**
+     * X座標のオフセットを採る。
+     *
+     * @param x X座標の移動量。
+     * @return オフセットしたポイント。
+     */
+    public Point offsetX(double x) {
+        return offset(x, 0.0);
+    }
+
+    /**
+     * Y座標のオフセットを採る。
+     *
+     * @param y Y座標の移動量。
+     * @return オフセットしたポイント。
+     */
+    public Point offsetY(double y) {
+        return offset(0.0, y);
+    }
+
+    /**
      * 近似かどうか判定する。
      *
      * @param point ポイント。
