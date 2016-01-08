@@ -35,7 +35,7 @@ public class PointAssert<S extends PointAssert<S>> extends AbstractAssert<S, Poi
      * @param point ポイント。
      * @return 自身のインスタンス。
      */
-    public S isNear(Point point) {
+    public S isNearTo(Point point) {
         isNotNull();
         if (!actual.nears(point)) {
             failWithMessage("%nExpecting:%n <%s>%nto be near to:%n <%s>%nbut was not.", actual, point);
@@ -49,7 +49,7 @@ public class PointAssert<S extends PointAssert<S>> extends AbstractAssert<S, Poi
      * @param point ポイント。
      * @return 自身のインスタンス。
      */
-    public S isNotNear(Point point) {
+    public S isNotNearTo(Point point) {
         isNotNull();
         if (actual.nears(point)) {
             failWithMessage("%nExpecting:%n <%s>%nto be not near to:%n <%s>%nbut was not.", actual, point);

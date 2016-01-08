@@ -35,7 +35,7 @@ public class SizeAssert<S extends SizeAssert<S>> extends AbstractAssert<S, Size>
      * @param size サイズ。
      * @return 自身のインスタンス。
      */
-    public S isNear(Size size) {
+    public S isNearTo(Size size) {
         isNotNull();
         if (!actual.nears(size)) {
             failWithMessage("%nExpecting:%n <%s>%nto be near to:%n <%s>%nbut was not.", actual, size);
@@ -49,7 +49,7 @@ public class SizeAssert<S extends SizeAssert<S>> extends AbstractAssert<S, Size>
      * @param size サイズ。
      * @return 自身のインスタンス。
      */
-    public S isNotNear(Size size) {
+    public S isNotNearTo(Size size) {
         isNotNull();
         if (actual.nears(size)) {
             failWithMessage("%nExpecting:%n <%s>%nto be not near to:%n <%s>%nbut was not.", actual, size);

@@ -17,8 +17,8 @@ public class RectTest {
     @Test
     public void fromBottomLeft_矩形を取得できる() {
         Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNear(Point.of(1.2, 3.4));
-        assertThat(rect.size()).isNear(Size.of(5.6, 7.8));
+        assertThat(rect.bottomLeft()).isNearTo(Point.of(1.2, 3.4));
+        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -27,8 +27,8 @@ public class RectTest {
     @Test
     public void fromBottomRight_矩形を取得できる() {
         Rect rect = Rect.fromBottomRight(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNear(Point.of(-4.4, 3.4));
-        assertThat(rect.size()).isNear(Size.of(5.6, 7.8));
+        assertThat(rect.bottomLeft()).isNearTo(Point.of(-4.4, 3.4));
+        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -37,8 +37,8 @@ public class RectTest {
     @Test
     public void fromTopLeft_矩形を取得できる() {
         Rect rect = Rect.fromTopLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNear(Point.of(1.2, -4.4));
-        assertThat(rect.size()).isNear(Size.of(5.6, 7.8));
+        assertThat(rect.bottomLeft()).isNearTo(Point.of(1.2, -4.4));
+        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -47,8 +47,8 @@ public class RectTest {
     @Test
     public void fromTopRight_矩形を取得できる() {
         Rect rect = Rect.fromTopRight(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNear(Point.of(-4.4, -4.4));
-        assertThat(rect.size()).isNear(Size.of(5.6, 7.8));
+        assertThat(rect.bottomLeft()).isNearTo(Point.of(-4.4, -4.4));
+        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -57,8 +57,8 @@ public class RectTest {
     @Test
     public void fromCenter_矩形を取得できる() {
         Rect rect = Rect.fromCenter(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNear(Point.of(-1.6, -0.5));
-        assertThat(rect.size()).isNear(Size.of(5.6, 7.8));
+        assertThat(rect.bottomLeft()).isNearTo(Point.of(-1.6, -0.5));
+        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -139,7 +139,7 @@ public class RectTest {
     @Test
     public void bottomRight_右下隅のポイントを取得できる() {
         Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomRight()).isNear(Point.of(6.8, 3.4));
+        assertThat(rect.bottomRight()).isNearTo(Point.of(6.8, 3.4));
     }
 
     /**
@@ -148,7 +148,7 @@ public class RectTest {
     @Test
     public void topLeft_左上隅のポイントを取得できる() {
         Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.topLeft()).isNear(Point.of(1.2, 11.2));
+        assertThat(rect.topLeft()).isNearTo(Point.of(1.2, 11.2));
     }
 
     /**
@@ -157,7 +157,7 @@ public class RectTest {
     @Test
     public void topRight_右上隅のポイントを取得できる() {
         Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.topRight()).isNear(Point.of(6.8, 11.2));
+        assertThat(rect.topRight()).isNearTo(Point.of(6.8, 11.2));
     }
 
     /**
@@ -166,7 +166,7 @@ public class RectTest {
     @Test
     public void center_中央のポイントを取得できる() {
         Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.center()).isNear(Point.of(4.0, 7.3));
+        assertThat(rect.center()).isNearTo(Point.of(4.0, 7.3));
     }
 
     /**
