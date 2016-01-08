@@ -6,7 +6,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import robocode.util.Utils;
+import static robocode.util.Utils.isNear;
 
 /**
  * サイズ。
@@ -38,7 +38,7 @@ public class Size {
      * @return サイズ。
      */
     public static Size of(double width, double height) {
-        if (width == 0.0 && height == 0.0) {
+        if (width == EMPTY.width() && height == EMPTY.height()) {
             return EMPTY;
         }
         return new Size(width, height);
@@ -151,8 +151,7 @@ public class Size {
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Size size) {
-        return Utils.isNear(width(), size.width())
-                && Utils.isNear(height(), size.height());
+        return isNear(width(), size.width()) && isNear(height(), size.height());
     }
 
 }

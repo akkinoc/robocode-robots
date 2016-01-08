@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import robocode.util.Utils;
+import static robocode.util.Utils.isNear;
 
 /**
  * ポイント。
@@ -36,7 +36,7 @@ public class Point {
      * @return ポイント。
      */
     public static Point of(double x, double y) {
-        if (x == 0.0 && y == 0.0) {
+        if (x == ORIGIN.x() && y == ORIGIN.y()) {
             return ORIGIN;
         }
         return new Point(x, y);
@@ -49,8 +49,7 @@ public class Point {
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Point point) {
-        return Utils.isNear(x(), point.x())
-                && Utils.isNear(y(), point.y());
+        return isNear(x(), point.x()) && isNear(y(), point.y());
     }
 
 }
