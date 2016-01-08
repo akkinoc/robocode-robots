@@ -10,13 +10,22 @@ import static robocode.util.Utils.NEAR_DELTA;
 public class PointTest {
 
     /**
-     * {@link Point#Point(double, double)} をテストする。
+     * {@link Point#of(double, double)} をテストする。
      */
     @Test
-    public void new_インスタンスを生成できる() {
-        Point point = new Point(1.2, 3.4);
+    public void of_インスタンスを取得できる() {
+        Point point = Point.of(1.2, 3.4);
         assertThat(point.x()).isEqualTo(1.2);
         assertThat(point.y()).isEqualTo(3.4);
+    }
+
+    /**
+     * {@link Point#of(double, double)} をテストする。
+     */
+    @Test
+    public void of_原点を取得できる() {
+        Point point = Point.of(0.0, 0.0);
+        assertThat(point).isSameAs(Point.ORIGIN);
     }
 
     /**
@@ -24,8 +33,8 @@ public class PointTest {
      */
     @Test
     public void nears_閾値内の場合はtrueを返す() {
-        Point point1 = new Point(1.2, 3.4);
-        Point point2 = new Point(
+        Point point1 = Point.of(1.2, 3.4);
+        Point point2 = Point.of(
                 point1.x() + NEAR_DELTA / 2.0,
                 point1.y() + NEAR_DELTA / 2.0
         );
@@ -37,8 +46,8 @@ public class PointTest {
      */
     @Test
     public void nears_X座標が閾値外の場合はfalseを返す() {
-        Point point1 = new Point(1.2, 3.4);
-        Point point2 = new Point(
+        Point point1 = Point.of(1.2, 3.4);
+        Point point2 = Point.of(
                 point1.x() + NEAR_DELTA * 2.0,
                 point1.y() + NEAR_DELTA / 2.0
         );
@@ -50,8 +59,8 @@ public class PointTest {
      */
     @Test
     public void nears_Y座標が閾値外の場合はfalseを返す() {
-        Point point1 = new Point(1.2, 3.4);
-        Point point2 = new Point(
+        Point point1 = Point.of(1.2, 3.4);
+        Point point2 = Point.of(
                 point1.x() + NEAR_DELTA / 2.0,
                 point1.y() + NEAR_DELTA * 2.0
         );

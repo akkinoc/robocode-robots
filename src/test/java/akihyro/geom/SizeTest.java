@@ -10,13 +10,22 @@ import static robocode.util.Utils.NEAR_DELTA;
 public class SizeTest {
 
     /**
-     * {@link Size#Size(double, double)} をテストする。
+     * {@link Size#of(double, double)} をテストする。
      */
     @Test
-    public void new_インスタンスを生成できる() {
-        Size size = new Size(1.2, 3.4);
+    public void of_インスタンスを取得できる() {
+        Size size = Size.of(1.2, 3.4);
         assertThat(size.width()).isEqualTo(1.2);
         assertThat(size.height()).isEqualTo(3.4);
+    }
+
+    /**
+     * {@link Size#of(double, double)} をテストする。
+     */
+    @Test
+    public void of_空のサイズを取得できる() {
+        Size size = Size.of(0.0, 0.0);
+        assertThat(size).isSameAs(Size.EMPTY);
     }
 
     /**
@@ -24,7 +33,7 @@ public class SizeTest {
      */
     @Test
     public void isEmpty_幅がない場合はtrueを返す() {
-        Size size = new Size(0.0, 3.4);
+        Size size = Size.of(0.0, 3.4);
         assertThat(size.isEmpty()).isTrue();
     }
 
@@ -33,7 +42,7 @@ public class SizeTest {
      */
     @Test
     public void isEmpty_高さがない場合はtrueを返す() {
-        Size size = new Size(1.2, 0.0);
+        Size size = Size.of(1.2, 0.0);
         assertThat(size.isEmpty()).isTrue();
     }
 
@@ -42,7 +51,7 @@ public class SizeTest {
      */
     @Test
     public void isEmpty_幅と高さがある場合はfalseを返す() {
-        Size size = new Size(1.2, 3.4);
+        Size size = Size.of(1.2, 3.4);
         assertThat(size.isEmpty()).isFalse();
     }
 
@@ -51,9 +60,9 @@ public class SizeTest {
      */
     @Test
     public void union_和集合を採れる() {
-        Size size1 = new Size(1.2, 7.8);
-        Size size2 = new Size(5.6, 3.4);
-        assertThat(size1.union(size2)).isEqualTo(new Size(5.6, 7.8));
+        Size size1 = Size.of(1.2, 7.8);
+        Size size2 = Size.of(5.6, 3.4);
+        assertThat(size1.union(size2)).isEqualTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -61,9 +70,9 @@ public class SizeTest {
      */
     @Test
     public void intersect_積集合を採れる() {
-        Size size1 = new Size(1.2, 7.8);
-        Size size2 = new Size(5.6, 3.4);
-        assertThat(size1.intersect(size2)).isEqualTo(new Size(1.2, 3.4));
+        Size size1 = Size.of(1.2, 7.8);
+        Size size2 = Size.of(5.6, 3.4);
+        assertThat(size1.intersect(size2)).isEqualTo(Size.of(1.2, 3.4));
     }
 
     /**
@@ -71,9 +80,9 @@ public class SizeTest {
      */
     @Test
     public void plus_加算できる() {
-        Size size1 = new Size(1.2, 3.4);
-        Size size2 = new Size(5.6, 7.8);
-        assertThat(size1.plus(size2)).isEqualTo(new Size(6.8, 11.2));
+        Size size1 = Size.of(1.2, 3.4);
+        Size size2 = Size.of(5.6, 7.8);
+        assertThat(size1.plus(size2)).isEqualTo(Size.of(6.8, 11.2));
     }
 
     /**
@@ -81,8 +90,8 @@ public class SizeTest {
      */
     @Test
     public void plusWidth_幅を加算できる() {
-        Size size1 = new Size(1.2, 3.4);
-        assertThat(size1.plusWidth(5.6)).isEqualTo(new Size(6.8, 3.4));
+        Size size1 = Size.of(1.2, 3.4);
+        assertThat(size1.plusWidth(5.6)).isEqualTo(Size.of(6.8, 3.4));
     }
 
     /**
@@ -90,8 +99,8 @@ public class SizeTest {
      */
     @Test
     public void plusHeight_高さを加算できる() {
-        Size size1 = new Size(1.2, 3.4);
-        assertThat(size1.plusHeight(7.8)).isEqualTo(new Size(1.2, 11.2));
+        Size size1 = Size.of(1.2, 3.4);
+        assertThat(size1.plusHeight(7.8)).isEqualTo(Size.of(1.2, 11.2));
     }
 
     /**
@@ -99,9 +108,9 @@ public class SizeTest {
      */
     @Test
     public void plusHorizontal_垂直方向に加算できる() {
-        Size size1 = new Size(1.2, 3.4);
-        Size size2 = new Size(5.6, 7.8);
-        assertThat(size1.plusHorizontal(size2)).isEqualTo(new Size(6.8, 7.8));
+        Size size1 = Size.of(1.2, 3.4);
+        Size size2 = Size.of(5.6, 7.8);
+        assertThat(size1.plusHorizontal(size2)).isEqualTo(Size.of(6.8, 7.8));
     }
 
     /**
@@ -109,9 +118,9 @@ public class SizeTest {
      */
     @Test
     public void plusVertical_垂直方向に加算できる() {
-        Size size1 = new Size(1.2, 3.4);
-        Size size2 = new Size(5.6, 7.8);
-        assertThat(size1.plusVertical(size2)).isEqualTo(new Size(5.6, 11.2));
+        Size size1 = Size.of(1.2, 3.4);
+        Size size2 = Size.of(5.6, 7.8);
+        assertThat(size1.plusVertical(size2)).isEqualTo(Size.of(5.6, 11.2));
     }
 
     /**
@@ -119,8 +128,8 @@ public class SizeTest {
      */
     @Test
     public void nears_閾値内の場合はtrueを返す() {
-        Size size1 = new Size(1.2, 3.4);
-        Size size2 = new Size(
+        Size size1 = Size.of(1.2, 3.4);
+        Size size2 = Size.of(
                 size1.width() + NEAR_DELTA / 2.0,
                 size1.height() + NEAR_DELTA / 2.0
         );
@@ -132,8 +141,8 @@ public class SizeTest {
      */
     @Test
     public void nears_幅が閾値外の場合はfalseを返す() {
-        Size size1 = new Size(1.2, 3.4);
-        Size size2 = new Size(
+        Size size1 = Size.of(1.2, 3.4);
+        Size size2 = Size.of(
                 size1.width() + NEAR_DELTA * 2.0,
                 size1.height() + NEAR_DELTA / 2.0
         );
@@ -145,8 +154,8 @@ public class SizeTest {
      */
     @Test
     public void nears_高さが閾値外の場合はfalseを返す() {
-        Size size1 = new Size(1.2, 3.4);
-        Size size2 = new Size(
+        Size size1 = Size.of(1.2, 3.4);
+        Size size2 = Size.of(
                 size1.width() + NEAR_DELTA / 2.0,
                 size1.height() + NEAR_DELTA * 2.0
         );

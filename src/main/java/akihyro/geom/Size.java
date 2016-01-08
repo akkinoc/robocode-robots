@@ -1,13 +1,18 @@
 package akihyro.geom;
 
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import robocode.util.Utils;
 
 /**
  * サイズ。
  */
 @Data
+@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public class Size {
 
     /**
@@ -26,6 +31,20 @@ public class Size {
     private final double height;
 
     /**
+     * サイズを取得する。
+     *
+     * @param width 幅。
+     * @param height 高さ。
+     * @return サイズ。
+     */
+    public static Size of(double width, double height) {
+        if (width == 0.0 && height == 0.0) {
+            return EMPTY;
+        }
+        return new Size(width, height);
+    }
+
+    /**
      * 空かどうか判定する。
      *
      * @return 空かどうか。
@@ -41,9 +60,9 @@ public class Size {
      * @return 和集合を表すサイズ。
      */
     public Size union(@NonNull Size size) {
-        return new Size(
-                Math.max(width(), size.width()),
-                Math.max(height(), size.height())
+        return of(
+                max(width(), size.width()),
+                max(height(), size.height())
         );
     }
 
@@ -54,9 +73,9 @@ public class Size {
      * @return 積集合を表すサイズ。
      */
     public Size intersect(@NonNull Size size) {
-        return new Size(
-                Math.min(width(), size.width()),
-                Math.min(height(), size.height())
+        return of(
+                min(width(), size.width()),
+                min(height(), size.height())
         );
     }
 
@@ -67,7 +86,7 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plus(@NonNull Size size) {
-        return new Size(
+        return of(
                 width() + size.width(),
                 height() + size.height()
         );
@@ -80,7 +99,7 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plusWidth(double value) {
-        return new Size(
+        return of(
                 width() + value,
                 height()
         );
@@ -93,7 +112,7 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plusHeight(double value) {
-        return new Size(
+        return of(
                 width(),
                 height() + value
         );
@@ -106,9 +125,9 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plusHorizontal(@NonNull Size size) {
-        return new Size(
+        return of(
                 width() + size.width(),
-                Math.max(height(), size.height())
+                max(height(), size.height())
         );
     }
 
@@ -119,8 +138,8 @@ public class Size {
      * @return 加算後のサイズ。
      */
     public Size plusVertical(@NonNull Size size) {
-        return new Size(
-                Math.max(width(), size.width()),
+        return of(
+                max(width(), size.width()),
                 height() + size.height()
         );
     }
