@@ -83,4 +83,10 @@ public class Point {
         return isNear(x(), point.x()) && isNear(y(), point.y());
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public String toString() {
+        return "(" + x() + ", " + y() + ")";
+    }
+
 }

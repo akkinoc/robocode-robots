@@ -154,4 +154,10 @@ public class Size {
         return isNear(width(), size.width()) && isNear(height(), size.height());
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public String toString() {
+        return "(" + width() + " x " + height() + ")";
+    }
+
 }

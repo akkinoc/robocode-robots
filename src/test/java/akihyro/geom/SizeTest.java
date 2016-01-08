@@ -14,7 +14,7 @@ public class SizeTest {
      * {@link Size#of(double, double)} をテストする。
      */
     @Test
-    public void of_インスタンスを取得できる() {
+    public void of_サイズを取得できる() {
         Size size = Size.of(1.2, 3.4);
         assertThat(size.width()).isCloseTo(1.2, within(0.1));
         assertThat(size.height()).isCloseTo(3.4, within(0.1));
@@ -164,6 +164,15 @@ public class SizeTest {
         Size size1 = Size.of(1.2, 3.4);
         Size size2 = Size.of(1.2, 3.5);
         assertThat(size1.nears(size2)).isFalse();
+    }
+
+    /**
+     * {@link Size#toString()} をテストする。
+     */
+    @Test
+    public void toString_文字列に変換できる() {
+        Size size = Size.of(1.2, 3.4);
+        assertThat(size).hasToString("(1.2 x 3.4)");
     }
 
 }

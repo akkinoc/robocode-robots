@@ -14,7 +14,7 @@ public class PointTest {
      * {@link Point#of(double, double)} をテストする。
      */
     @Test
-    public void of_インスタンスを取得できる() {
+    public void of_ポイントを取得できる() {
         Point point = Point.of(1.2, 3.4);
         assertThat(point.x()).isCloseTo(1.2, within(0.1));
         assertThat(point.y()).isCloseTo(3.4, within(0.1));
@@ -87,6 +87,15 @@ public class PointTest {
         Point point1 = Point.of(1.2, 3.4);
         Point point2 = Point.of(1.2, 3.5);
         assertThat(point1.nears(point2)).isFalse();
+    }
+
+    /**
+     * {@link Point#toString()} をテストする。
+     */
+    @Test
+    public void toString_文字列に変換できる() {
+        Point point = Point.of(1.2, 3.4);
+        assertThat(point).hasToString("(1.2, 3.4)");
     }
 
 }
