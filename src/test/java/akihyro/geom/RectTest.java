@@ -16,9 +16,9 @@ public class RectTest {
      */
     @Test
     public void fromBottomLeft_矩形を取得できる() {
-        Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNearTo(Point.of(1.2, 3.4));
-        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
+        Rect actual = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        assertThat(actual.bottomLeft()).isNearTo(Point.of(1.2, 3.4));
+        assertThat(actual.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -26,9 +26,9 @@ public class RectTest {
      */
     @Test
     public void fromBottomRight_矩形を取得できる() {
-        Rect rect = Rect.fromBottomRight(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNearTo(Point.of(-4.4, 3.4));
-        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
+        Rect actual = Rect.fromBottomRight(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        assertThat(actual.bottomLeft()).isNearTo(Point.of(-4.4, 3.4));
+        assertThat(actual.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -36,9 +36,9 @@ public class RectTest {
      */
     @Test
     public void fromTopLeft_矩形を取得できる() {
-        Rect rect = Rect.fromTopLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNearTo(Point.of(1.2, -4.4));
-        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
+        Rect actual = Rect.fromTopLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        assertThat(actual.bottomLeft()).isNearTo(Point.of(1.2, -4.4));
+        assertThat(actual.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -46,9 +46,9 @@ public class RectTest {
      */
     @Test
     public void fromTopRight_矩形を取得できる() {
-        Rect rect = Rect.fromTopRight(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNearTo(Point.of(-4.4, -4.4));
-        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
+        Rect actual = Rect.fromTopRight(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        assertThat(actual.bottomLeft()).isNearTo(Point.of(-4.4, -4.4));
+        assertThat(actual.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -56,9 +56,9 @@ public class RectTest {
      */
     @Test
     public void fromCenter_矩形を取得できる() {
-        Rect rect = Rect.fromCenter(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect.bottomLeft()).isNearTo(Point.of(-1.6, -0.5));
-        assertThat(rect.size()).isNearTo(Size.of(5.6, 7.8));
+        Rect actual = Rect.fromCenter(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        assertThat(actual.bottomLeft()).isNearTo(Point.of(-1.6, -0.5));
+        assertThat(actual.size()).isNearTo(Size.of(5.6, 7.8));
     }
 
     /**
@@ -174,9 +174,9 @@ public class RectTest {
      */
     @Test
     public void nears_閾値内の場合はtrueを返す() {
-        Rect rect1 = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        Rect rect2 = Rect.fromBottomLeft(Point.of(nextUp(1.2), nextUp(3.4)), Size.of(nextUp(5.6), nextUp(7.8)));
-        assertThat(rect1.nears(rect2)).isTrue();
+        Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        Rect other = Rect.fromBottomLeft(Point.of(nextUp(1.2), nextUp(3.4)), Size.of(nextUp(5.6), nextUp(7.8)));
+        assertThat(rect.nears(other)).isTrue();
     }
 
     /**
@@ -184,9 +184,9 @@ public class RectTest {
      */
     @Test
     public void nears_左下隅のX座標が閾値外の場合はfalseを返す() {
-        Rect rect1 = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        Rect rect2 = Rect.fromBottomLeft(Point.of(1.3, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect1.nears(rect2)).isFalse();
+        Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        Rect other = Rect.fromBottomLeft(Point.of(1.3, 3.4), Size.of(5.6, 7.8));
+        assertThat(rect.nears(other)).isFalse();
     }
 
     /**
@@ -194,9 +194,9 @@ public class RectTest {
      */
     @Test
     public void nears_左下隅のY座標が閾値外の場合はfalseを返す() {
-        Rect rect1 = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        Rect rect2 = Rect.fromBottomLeft(Point.of(1.2, 3.5), Size.of(5.6, 7.8));
-        assertThat(rect1.nears(rect2)).isFalse();
+        Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        Rect other = Rect.fromBottomLeft(Point.of(1.2, 3.5), Size.of(5.6, 7.8));
+        assertThat(rect.nears(other)).isFalse();
     }
 
     /**
@@ -204,9 +204,9 @@ public class RectTest {
      */
     @Test
     public void nears_幅が閾値外の場合はfalseを返す() {
-        Rect rect1 = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        Rect rect2 = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.7, 7.8));
-        assertThat(rect1.nears(rect2)).isFalse();
+        Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        Rect other = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.7, 7.8));
+        assertThat(rect.nears(other)).isFalse();
     }
 
     /**
@@ -214,9 +214,9 @@ public class RectTest {
      */
     @Test
     public void nears_高さが閾値外の場合はfalseを返す() {
-        Rect rect1 = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        Rect rect2 = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.9));
-        assertThat(rect1.nears(rect2)).isFalse();
+        Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        Rect other = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.9));
+        assertThat(rect.nears(other)).isFalse();
     }
 
     /**
@@ -224,8 +224,8 @@ public class RectTest {
      */
     @Test
     public void toString_文字列に変換できる() {
-        Rect rect = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(rect).hasToString("(bottomLeft=(1.2, 3.4), size=(5.6 x 7.8))");
+        Rect actual = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
+        assertThat(actual).hasToString("(bottomLeft=(1.2, 3.4), size=(5.6 x 7.8))");
     }
 
 }

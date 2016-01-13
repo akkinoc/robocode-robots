@@ -15,9 +15,9 @@ public class SizeTest {
      */
     @Test
     public void of_サイズを取得できる() {
-        Size size = Size.of(1.2, 3.4);
-        assertThat(size.width()).isCloseTo(1.2, within(0.1));
-        assertThat(size.height()).isCloseTo(3.4, within(0.1));
+        Size actual = Size.of(1.2, 3.4);
+        assertThat(actual.width()).isCloseTo(1.2, within(0.1));
+        assertThat(actual.height()).isCloseTo(3.4, within(0.1));
     }
 
     /**
@@ -25,8 +25,8 @@ public class SizeTest {
      */
     @Test
     public void of_空のサイズを取得できる() {
-        Size size = Size.of(0.0, 0.0);
-        assertThat(size).isSameAs(Size.EMPTY);
+        Size actual = Size.of(0.0, 0.0);
+        assertThat(actual).isSameAs(Size.EMPTY);
     }
 
     /**
@@ -57,15 +57,60 @@ public class SizeTest {
     }
 
     /**
+     * {@link Size#offset(double, double)} をテストする。
+     */
+    @Test
+    public void offset_オフセットを採れる() {
+        Size size = Size.of(1.2, 3.4);
+        Size actual = size.offset(5.6, 7.8);
+        assertThat(actual.width()).isCloseTo(6.8, within(0.1));
+        assertThat(actual.height()).isCloseTo(11.2, within(0.1));
+    }
+
+    /**
+     * {@link Size#offset(Size)} をテストする。
+     */
+    @Test
+    public void offset_サイズ指定でオフセットを採れる() {
+        Size size = Size.of(1.2, 3.4);
+        Size offset = Size.of(5.6, 7.8);
+        Size actual = size.offset(offset);
+        assertThat(actual.width()).isCloseTo(6.8, within(0.1));
+        assertThat(actual.height()).isCloseTo(11.2, within(0.1));
+    }
+
+    /**
+     * {@link Size#offsetWidth(double)} をテストする。
+     */
+    @Test
+    public void offsetWidth_幅のオフセットを採れる() {
+        Size size = Size.of(1.2, 3.4);
+        Size actual = size.offsetWidth(5.6);
+        assertThat(actual.width()).isCloseTo(6.8, within(0.1));
+        assertThat(actual.height()).isCloseTo(3.4, within(0.1));
+    }
+
+    /**
+     * {@link Size#offsetHeight(double)} をテストする。
+     */
+    @Test
+    public void offsetHeight_高さのオフセットを採れる() {
+        Size size = Size.of(1.2, 3.4);
+        Size actual = size.offsetHeight(7.8);
+        assertThat(actual.width()).isCloseTo(1.2, within(0.1));
+        assertThat(actual.height()).isCloseTo(11.2, within(0.1));
+    }
+
+    /**
      * {@link Size#union(Size)} をテストする。
      */
     @Test
     public void union_和集合を採れる() {
-        Size size1 = Size.of(1.2, 7.8);
-        Size size2 = Size.of(5.6, 3.4);
-        Size size = size1.union(size2);
-        assertThat(size.width()).isCloseTo(5.6, within(0.1));
-        assertThat(size.height()).isCloseTo(7.8, within(0.1));
+        Size size = Size.of(1.2, 7.8);
+        Size other = Size.of(5.6, 3.4);
+        Size actual = size.union(other);
+        assertThat(actual.width()).isCloseTo(5.6, within(0.1));
+        assertThat(actual.height()).isCloseTo(7.8, within(0.1));
     }
 
     /**
@@ -73,67 +118,47 @@ public class SizeTest {
      */
     @Test
     public void intersect_積集合を採れる() {
-        Size size1 = Size.of(1.2, 7.8);
-        Size size2 = Size.of(5.6, 3.4);
-        Size size = size1.intersect(size2);
-        assertThat(size.width()).isCloseTo(1.2, within(0.1));
-        assertThat(size.height()).isCloseTo(3.4, within(0.1));
+        Size size = Size.of(1.2, 7.8);
+        Size other = Size.of(5.6, 3.4);
+        Size actual = size.intersect(other);
+        assertThat(actual.width()).isCloseTo(1.2, within(0.1));
+        assertThat(actual.height()).isCloseTo(3.4, within(0.1));
     }
 
     /**
-     * {@link Size#plus(Size)} をテストする。
+     * {@link Size#joinHorizontal(Size)} をテストする。
      */
     @Test
-    public void plus_加算できる() {
-        Size size1 = Size.of(1.2, 3.4);
-        Size size2 = Size.of(5.6, 7.8);
-        Size size = size1.plus(size2);
-        assertThat(size.width()).isCloseTo(6.8, within(0.1));
-        assertThat(size.height()).isCloseTo(11.2, within(0.1));
+    public void joinHorizontal_水平方向に連結できる() {
+        Size size = Size.of(1.2, 3.4);
+        Size other = Size.of(5.6, 7.8);
+        Size actual = size.joinHorizontal(other);
+        assertThat(actual.width()).isCloseTo(6.8, within(0.1));
+        assertThat(actual.height()).isCloseTo(7.8, within(0.1));
     }
 
     /**
-     * {@link Size#plusWidth(double)} をテストする。
+     * {@link Size#joinVertical(Size)} をテストする。
      */
     @Test
-    public void plusWidth_幅を加算できる() {
-        Size size = Size.of(1.2, 3.4).plusWidth(5.6);
-        assertThat(size.width()).isCloseTo(6.8, within(0.1));
-        assertThat(size.height()).isCloseTo(3.4, within(0.1));
+    public void joinVertical_垂直方向に連結できる() {
+        Size size = Size.of(1.2, 3.4);
+        Size other = Size.of(5.6, 7.8);
+        Size actual = size.joinVertical(other);
+        assertThat(actual.width()).isCloseTo(5.6, within(0.1));
+        assertThat(actual.height()).isCloseTo(11.2, within(0.1));
     }
 
     /**
-     * {@link Size#plusHeight(double)} をテストする。
+     * {@link Size#edged(RectEdge)} をテストする。
      */
     @Test
-    public void plusHeight_高さを加算できる() {
-        Size size = Size.of(1.2, 3.4).plusHeight(7.8);
-        assertThat(size.width()).isCloseTo(1.2, within(0.1));
-        assertThat(size.height()).isCloseTo(11.2, within(0.1));
-    }
-
-    /**
-     * {@link Size#plusHorizontal(Size)} をテストする。
-     */
-    @Test
-    public void plusHorizontal_水平方向に加算できる() {
-        Size size1 = Size.of(1.2, 3.4);
-        Size size2 = Size.of(5.6, 7.8);
-        Size size = size1.plusHorizontal(size2);
-        assertThat(size.width()).isCloseTo(6.8, within(0.1));
-        assertThat(size.height()).isCloseTo(7.8, within(0.1));
-    }
-
-    /**
-     * {@link Size#plusVertical(Size)} をテストする。
-     */
-    @Test
-    public void plusVertical_垂直方向に加算できる() {
-        Size size1 = Size.of(1.2, 3.4);
-        Size size2 = Size.of(5.6, 7.8);
-        Size size = size1.plusVertical(size2);
-        assertThat(size.width()).isCloseTo(5.6, within(0.1));
-        assertThat(size.height()).isCloseTo(11.2, within(0.1));
+    public void edged_エッジ付きのサイズを採れる() {
+        Size size = Size.of(1.2, 3.4);
+        RectEdge edge = RectEdge.of(1.2, 3.4, 5.6, 7.8);
+        Size actual = size.edged(edge);
+        assertThat(actual.width()).isCloseTo(8.0, within(0.1));
+        assertThat(actual.height()).isCloseTo(14.6, within(0.1));
     }
 
     /**
@@ -141,9 +166,9 @@ public class SizeTest {
      */
     @Test
     public void nears_閾値内の場合はtrueを返す() {
-        Size size1 = Size.of(1.2, 3.4);
-        Size size2 = Size.of(nextUp(1.2), nextUp(3.4));
-        assertThat(size1.nears(size2)).isTrue();
+        Size size = Size.of(1.2, 3.4);
+        Size other = Size.of(nextUp(1.2), nextUp(3.4));
+        assertThat(size.nears(other)).isTrue();
     }
 
     /**
@@ -151,9 +176,9 @@ public class SizeTest {
      */
     @Test
     public void nears_幅が閾値外の場合はfalseを返す() {
-        Size size1 = Size.of(1.2, 3.4);
-        Size size2 = Size.of(1.3, 3.4);
-        assertThat(size1.nears(size2)).isFalse();
+        Size size = Size.of(1.2, 3.4);
+        Size other = Size.of(1.3, 3.4);
+        assertThat(size.nears(other)).isFalse();
     }
 
     /**
@@ -161,9 +186,9 @@ public class SizeTest {
      */
     @Test
     public void nears_高さが閾値外の場合はfalseを返す() {
-        Size size1 = Size.of(1.2, 3.4);
-        Size size2 = Size.of(1.2, 3.5);
-        assertThat(size1.nears(size2)).isFalse();
+        Size size = Size.of(1.2, 3.4);
+        Size other = Size.of(1.2, 3.5);
+        assertThat(size.nears(other)).isFalse();
     }
 
     /**
@@ -171,8 +196,8 @@ public class SizeTest {
      */
     @Test
     public void toString_文字列に変換できる() {
-        Size size = Size.of(1.2, 3.4);
-        assertThat(size).hasToString("(1.2 x 3.4)");
+        Size actual = Size.of(1.2, 3.4);
+        assertThat(actual).hasToString("(1.2 x 3.4)");
     }
 
 }

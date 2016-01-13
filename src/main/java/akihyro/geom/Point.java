@@ -45,8 +45,8 @@ public class Point {
     /**
      * オフセットを採る。
      *
-     * @param x X座標の移動量。
-     * @param y Y座標の移動量。
+     * @param x X座標の差分。
+     * @param y Y座標の差分。
      * @return オフセットしたポイント。
      */
     public Point offset(double x, double y) {
@@ -54,9 +54,19 @@ public class Point {
     }
 
     /**
+     * オフセットを採る。
+     *
+     * @param point 差分。
+     * @return オフセットしたポイント。
+     */
+    public Point offset(Point point) {
+        return offset(point.x(), point.y());
+    }
+
+    /**
      * X座標のオフセットを採る。
      *
-     * @param x X座標の移動量。
+     * @param x X座標の差分。
      * @return オフセットしたポイント。
      */
     public Point offsetX(double x) {
@@ -66,7 +76,7 @@ public class Point {
     /**
      * Y座標のオフセットを採る。
      *
-     * @param y Y座標の移動量。
+     * @param y Y座標の差分。
      * @return オフセットしたポイント。
      */
     public Point offsetY(double y) {
@@ -76,7 +86,7 @@ public class Point {
     /**
      * 近似かどうか判定する。
      *
-     * @param point ポイント。
+     * @param point 比較対象のポイント。
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Point point) {

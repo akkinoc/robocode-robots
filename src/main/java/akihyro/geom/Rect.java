@@ -25,7 +25,7 @@ public class Rect {
     private final Size size;
 
     /**
-     * 矩形を取得する。
+     * 左下隅を基準として矩形を取得する。
      *
      * @param bottomLeft 左下隅のポイント。
      * @param size サイズ。
@@ -36,7 +36,7 @@ public class Rect {
     }
 
     /**
-     * 矩形を取得する。
+     * 右下隅を基準として矩形を取得する。
      *
      * @param bottomRight 右下隅のポイント。
      * @param size サイズ。
@@ -47,7 +47,7 @@ public class Rect {
     }
 
     /**
-     * 矩形を取得する。
+     * 左上隅を基準として矩形を取得する。
      *
      * @param topLeft 左上隅のポイント。
      * @param size サイズ。
@@ -58,7 +58,7 @@ public class Rect {
     }
 
     /**
-     * 矩形を取得する。
+     * 右上隅を基準として矩形を取得する。
      *
      * @param topRight 右上隅のポイント。
      * @param size サイズ。
@@ -69,13 +69,13 @@ public class Rect {
     }
 
     /**
-     * 矩形を取得する。
+     * 中央を基準として矩形を取得する。
      *
      * @param center 中央のポイント。
      * @param size サイズ。
      * @return 矩形。
      */
-    public static Rect fromCenter(Point center, Size size) {
+    public static Rect fromCenter(@NonNull Point center, @NonNull Size size) {
         return fromBottomLeft(center.offset(- size.width() / 2.0, - size.height() / 2.0), size);
     }
 
@@ -190,7 +190,7 @@ public class Rect {
     /**
      * 近似かどうか判定する。
      *
-     * @param rect 矩形。
+     * @param rect 比較対象の矩形。
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Rect rect) {

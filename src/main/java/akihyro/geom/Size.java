@@ -54,9 +54,53 @@ public class Size {
     }
 
     /**
+     * オフセットを採る。
+     *
+     * @param width 幅の差分。
+     * @param height 高さの差分。
+     * @return オフセットしたサイズ。
+     */
+    public Size offset(double width, double height) {
+        return of(
+                width() + width,
+                height() + height
+        );
+    }
+
+    /**
+     * オフセットを採る。
+     *
+     * @param size 差分。
+     * @return オフセットしたサイズ。
+     */
+    public Size offset(@NonNull Size size) {
+        return offset(size.width(), size.height());
+    }
+
+    /**
+     * 幅のオフセットを採る。
+     *
+     * @param width 幅の差分。
+     * @return オフセットしたサイズ。
+     */
+    public Size offsetWidth(double width) {
+        return offset(width, 0.0);
+    }
+
+    /**
+     * 高さのオフセットを採る。
+     *
+     * @param height 高さの差分。
+     * @return オフセットしたサイズ。
+     */
+    public Size offsetHeight(double height) {
+        return offset(0.0, height);
+    }
+
+    /**
      * 和集合を採る。
      *
-     * @param size サイズ。
+     * @param size 集合に含めるサイズ。
      * @return 和集合を表すサイズ。
      */
     public Size union(@NonNull Size size) {
@@ -69,7 +113,7 @@ public class Size {
     /**
      * 積集合を採る。
      *
-     * @param size サイズ。
+     * @param size 集合に含めるサイズ。
      * @return 積集合を表すサイズ。
      */
     public Size intersect(@NonNull Size size) {
@@ -80,51 +124,12 @@ public class Size {
     }
 
     /**
-     * 加算する。
+     * 水平方向に連結する。
      *
-     * @param size サイズ。
-     * @return 加算後のサイズ。
+     * @param size 連結するサイズ。
+     * @return 連結後のサイズ。
      */
-    public Size plus(@NonNull Size size) {
-        return of(
-                width() + size.width(),
-                height() + size.height()
-        );
-    }
-
-    /**
-     * 幅を加算する。
-     *
-     * @param width 幅。
-     * @return 加算後のサイズ。
-     */
-    public Size plusWidth(double width) {
-        return of(
-                width() + width,
-                height()
-        );
-    }
-
-    /**
-     * 高さを加算する。
-     *
-     * @param height 高さ。
-     * @return 加算後のサイズ。
-     */
-    public Size plusHeight(double height) {
-        return of(
-                width(),
-                height() + height
-        );
-    }
-
-    /**
-     * 水平方向に加算する。
-     *
-     * @param size サイズ。
-     * @return 加算後のサイズ。
-     */
-    public Size plusHorizontal(@NonNull Size size) {
+    public Size joinHorizontal(@NonNull Size size) {
         return of(
                 width() + size.width(),
                 max(height(), size.height())
@@ -132,12 +137,12 @@ public class Size {
     }
 
     /**
-     * 垂直方向に加算する。
+     * 垂直方向に連結する。
      *
-     * @param size サイズ。
-     * @return 加算後のサイズ。
+     * @param size 連結するサイズ。
+     * @return 連結後のサイズ。
      */
-    public Size plusVertical(@NonNull Size size) {
+    public Size joinVertical(@NonNull Size size) {
         return of(
                 max(width(), size.width()),
                 height() + size.height()
@@ -145,9 +150,22 @@ public class Size {
     }
 
     /**
+     * エッジ付きのサイズを採る。
+     *
+     * @param edge 矩形エッジ。
+     * @return エッジ付きのサイズ。
+     */
+    public Size edged(@NonNull RectEdge edge) {
+        return of(
+                width() + edge.left() + edge.right(),
+                height() + edge.bottom() + edge.top()
+        );
+    }
+
+    /**
      * 近似かどうか判定する。
      *
-     * @param size サイズ。
+     * @param size 比較対象のサイズ。
      * @return 近似かどうか。
      */
     public boolean nears(@NonNull Size size) {
