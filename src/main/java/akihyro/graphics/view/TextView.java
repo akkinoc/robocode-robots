@@ -1,4 +1,4 @@
-package akihyro.view;
+package akihyro.graphics.view;
 
 import akihyro.geom.Point;
 import akihyro.geom.Size;

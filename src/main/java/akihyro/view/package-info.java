@@ -1,4 +1,0 @@
-/**
- * ビュー。
- */
-package akihyro.view;

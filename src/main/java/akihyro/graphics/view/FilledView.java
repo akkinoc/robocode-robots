@@ -1,4 +1,4 @@
-package akihyro.view;
+package akihyro.graphics.view;
 
 import akihyro.geom.Size;
 import java.awt.Color;

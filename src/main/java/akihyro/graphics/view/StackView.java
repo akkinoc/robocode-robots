@@ -1,4 +1,4 @@
-package akihyro.view;
+package akihyro.graphics.view;
 
 import akihyro.geom.Size;
 import java.awt.Graphics2D;
@@ -9,9 +9,9 @@ import lombok.NonNull;
 import lombok.Setter;
 
 /**
- * 垂直方向に並べて描画するビュー。
+ * 同じ場所に重ねて描画するビュー。
  */
-public class ColumnView extends View {
+public class StackView extends View {
 
     /**
      * ビューリスト。
@@ -29,24 +29,20 @@ public class ColumnView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public ColumnView layout(@NonNull Graphics2D graphics) {
+    public StackView layout(@NonNull Graphics2D graphics) {
         size = Size.EMPTY;
         for (View view : views()) {
             view.layout(graphics);
-            size = size.joinVertical(view.size());
+            size = size.union(view.size());
         }
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ColumnView paint(@NonNull Graphics2D graphics) {
-        double offset = size().height();
+    public StackView paint(@NonNull Graphics2D graphics) {
         for (View view : views()) {
-            offset -= view.size().height();
-            graphics.translate(0.0, offset);
             view.paint(graphics);
-            graphics.translate(0.0, - offset);
         }
         return this;
     }

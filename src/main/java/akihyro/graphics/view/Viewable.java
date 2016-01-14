@@ -1,7 +1,7 @@
-package akihyro.view;
+package akihyro.graphics.view;
 
 /**
- * ビュー化可能なことを表すインターフェイス。
+ * ビューによる表現が可能なことを表すインターフェイス。
  */
 public interface Viewable {
 
