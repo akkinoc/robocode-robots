@@ -2,6 +2,7 @@ package akihyro.view;
 
 import akihyro.geom.Size;
 import java.awt.Graphics2D;
+import static java.util.Collections.emptyList;
 import java.util.List;
 import lombok.Getter;
 import lombok.NonNull;
@@ -9,10 +10,8 @@ import lombok.Setter;
 
 /**
  * 水平方向に並べて描画するビュー。
- *
- * @param <V> ビューのタイプ。
  */
-public class RowView<V extends View> extends View {
+public class RowView extends View {
 
     /**
      * ビューリスト。
@@ -20,35 +19,36 @@ public class RowView<V extends View> extends View {
     @NonNull
     @Getter
     @Setter
-    private ViewAttr<List<V>> views = ViewAttrs.undef();
+    private List<View> views = emptyList();
 
     /**
-     * コンストラクタ。
+     * サイズ。
      */
-    public RowView() {
-        size(this::calcSize);
-    }
+    @Getter
+    private Size size = Size.EMPTY;
 
-    /**
-     * サイズを求める。
-     *
-     * @param graphics 描画先。
-     * @return サイズ。
-     */
-    private Size calcSize(@NonNull Graphics2D graphics) {
-        return views().get(graphics).stream()
-                .map(view -> view.size().get(graphics))
-                .reduce(Size.EMPTY, Size::plusHorizontal);
+    /** {@inheritDoc} */
+    @Override
+    public RowView layout(@NonNull Graphics2D graphics) {
+        size = Size.EMPTY;
+        for (View view : views()) {
+            view.layout(graphics);
+            size = size.joinHorizontal(view.size());
+        }
+        return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void render(@NonNull Graphics2D graphics) {
-        for (View view : views().get(graphics)) {
-            view.render(graphics);
-            graphics.translate(view.size().get(graphics).width(), 0.0);
+    public RowView paint(@NonNull Graphics2D graphics) {
+        double offset = 0.0;
+        for (View view : views()) {
+            graphics.translate(offset, 0.0);
+            view.paint(graphics);
+            graphics.translate(- offset, 0.0);
+            offset += view.size().width();
         }
-        graphics.translate(- size().get(graphics).width(), 0.0);
+        return this;
     }
 
 }

@@ -1,8 +1,8 @@
 package akihyro.view;
 
 import akihyro.geom.Point;
-import akihyro.geom.Rect;
 import akihyro.geom.Size;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Paint;
@@ -22,15 +22,15 @@ public class TextView extends View {
     @NonNull
     @Getter
     @Setter
-    private ViewAttr<String> text = ViewAttrs.undef();
+    private String text = "";
 
     /**
-     * ペイント。
+     * パターン。
      */
     @NonNull
     @Getter
     @Setter
-    private ViewAttr<Paint> paint = Graphics2D::getPaint;
+    private Paint pattern = Color.BLACK;
 
     /**
      * フォント。
@@ -38,45 +38,41 @@ public class TextView extends View {
     @NonNull
     @Getter
     @Setter
-    private ViewAttr<Font> font = Graphics2D::getFont;
+    private Font font = Font.decode(null);
 
     /**
-     * コンストラクタ。
+     * サイズ。
      */
-    public TextView() {
-        size(graphics -> calcBounds(graphics).size());
-    }
+    @Getter
+    private Size size = Size.EMPTY;
 
     /**
-     * ベースライン基準の境界を求める。
-     *
-     * @param graphics 描画先。
-     * @return ベースライン基準の境界。
+     * オフセット。
      */
-    private Rect calcBounds(@NonNull Graphics2D graphics) {
-        Rectangle2D bounds = graphics
-                .getFontMetrics(font().get(graphics))
-                .getStringBounds(text().get(graphics), graphics);
-        return Rect.fromTopLeft(
-                Point.of(bounds.getX(), - bounds.getY()),
-                Size.of(bounds.getWidth(), bounds.getHeight())
-        );
+    private Point offset = Point.ORIGIN;
+
+    /** {@inheritDoc} */
+    @Override
+    public TextView layout(@NonNull Graphics2D graphics) {
+        Rectangle2D bounds = font().getStringBounds(text(), graphics.getFontRenderContext());
+        size = Size.of(bounds.getWidth(), bounds.getHeight());
+        offset = Point.of(- bounds.getX(), bounds.getY() + bounds.getHeight());
+        return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void render(@NonNull Graphics2D graphics) {
-
-        Paint originalPaint = graphics.getPaint();
+    public TextView paint(@NonNull Graphics2D graphics) {
+        Paint originalPattern = graphics.getPaint();
         Font originalFont = graphics.getFont();
-
-        Rect bounds = calcBounds(graphics);
-        graphics.setPaint(paint().get(graphics));
-        graphics.setFont(font().get(graphics));
-        graphics.drawString(text().get(graphics), (float) - bounds.left(), (float) - bounds.bottom());
-
-        graphics.setPaint(originalPaint);
+        graphics.setPaint(pattern());
+        graphics.setFont(font());
+        graphics.translate(offset.x(), offset.y());
+        graphics.drawString(text(), 0, 0);
+        graphics.setPaint(originalPattern);
         graphics.setFont(originalFont);
+        graphics.translate(- offset.x(), - offset.y());
+        return this;
 
     }
 

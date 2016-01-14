@@ -2,9 +2,6 @@ package akihyro.view;
 
 import akihyro.geom.Size;
 import java.awt.Graphics2D;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
 
 /**
  * ビュー。
@@ -12,18 +9,26 @@ import lombok.Setter;
 public abstract class View {
 
     /**
-     * サイズ。
+     * サイズを取得する。
+     *
+     * @return サイズ。
      */
-    @NonNull
-    @Getter
-    @Setter
-    private ViewAttr<Size> size = ViewAttrs.undef();
+    public abstract Size size();
+
+    /**
+     * レイアウトする。
+     *
+     * @param graphics 描画先。
+     * @return 自身のインスタンス。
+     */
+    public abstract View layout(Graphics2D graphics);
 
     /**
      * 描画する。
      *
      * @param graphics 描画先。
+     * @return 自身のインスタンス。
      */
-    public abstract void render(Graphics2D graphics);
+    public abstract View paint(Graphics2D graphics);
 
 }

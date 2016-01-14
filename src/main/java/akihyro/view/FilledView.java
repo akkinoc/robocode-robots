@@ -1,6 +1,7 @@
 package akihyro.view;
 
 import akihyro.geom.Size;
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Shape;
@@ -15,12 +16,12 @@ import lombok.Setter;
 public class FilledView extends View {
 
     /**
-     * ペイント。
+     * パターン。
      */
     @NonNull
     @Getter
     @Setter
-    private ViewAttr<Paint> paint = Graphics2D::getPaint;
+    private Paint pattern = Color.BLACK;
 
     /**
      * 形状。
@@ -28,22 +29,30 @@ public class FilledView extends View {
     @NonNull
     @Getter
     @Setter
-    private ViewAttr<Shape> shape = graphics -> {
-        Size size = size().get(graphics);
-        return new Rectangle2D.Double(0.0, 0.0, size.width(), size.height());
-    };
+    private Shape shape = new Rectangle2D.Double();
+
+    /**
+     * サイズ。
+     */
+    @Getter
+    private Size size = Size.EMPTY;
 
     /** {@inheritDoc} */
     @Override
-    public void render(@NonNull Graphics2D graphics) {
+    public FilledView layout(@NonNull Graphics2D graphics) {
+        Rectangle2D bounds = shape().getBounds2D();
+        size = Size.of(bounds.getX() + bounds.getWidth(), bounds.getY() + bounds.getHeight());
+        return this;
+    }
 
-        Paint originalPaint = graphics.getPaint();
-
-        graphics.setPaint(paint().get(graphics));
-        graphics.fill(shape().get(graphics));
-
-        graphics.setPaint(originalPaint);
-
+    /** {@inheritDoc} */
+    @Override
+    public FilledView paint(@NonNull Graphics2D graphics) {
+        Paint originalPattern = graphics.getPaint();
+        graphics.setPaint(pattern());
+        graphics.fill(shape());
+        graphics.setPaint(originalPattern);
+        return this;
     }
 
 }

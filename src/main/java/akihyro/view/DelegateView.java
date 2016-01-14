@@ -8,10 +8,8 @@ import lombok.Setter;
 
 /**
  * 別のビューに処理を委譲するビュー。
- *
- * @param <V> ビューのタイプ。
  */
-public class DelegateView<V extends View> extends View {
+public class DelegateView extends View {
 
     /**
      * ビュー。
@@ -19,29 +17,26 @@ public class DelegateView<V extends View> extends View {
     @NonNull
     @Getter
     @Setter
-    private ViewAttr<V> view = ViewAttrs.undef();
+    private View view = EmptyView.INSTANCE;
 
-    /**
-     * コンストラクタ。
-     */
-    public DelegateView() {
-        size(this::calcSize);
-    }
-
-    /**
-     * サイズを求める。
-     *
-     * @param graphics 描画先。
-     * @return サイズ。
-     */
-    private Size calcSize(Graphics2D graphics) {
-        return view().get(graphics).size().get(graphics);
+    /** {@inheritDoc} */
+    @Override
+    public Size size() {
+        return view().size();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void render(Graphics2D graphics) {
-        view().get(graphics).render(graphics);
+    public DelegateView layout(Graphics2D graphics) {
+        view().layout(graphics);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DelegateView paint(Graphics2D graphics) {
+        view().paint(graphics);
+        return this;
     }
 
 }
