@@ -1,9 +1,12 @@
 package akihyro.graphics.view;
 
+import akihyro.geom.Point;
 import akihyro.geom.Size;
+import akihyro.graphics.scope.TranslateScope;
 import java.awt.Graphics2D;
 import static java.util.Collections.emptyList;
 import java.util.List;
+import lombok.Cleanup;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -41,12 +44,11 @@ public class RowView extends View {
     /** {@inheritDoc} */
     @Override
     public RowView paint(@NonNull Graphics2D graphics) {
-        double offset = 0.0;
+        Point offset = Point.of(0.0, 0.0);
         for (View view : views()) {
-            graphics.translate(offset, 0.0);
+            @Cleanup TranslateScope translateScope = new TranslateScope(graphics, offset).begin();
             view.paint(graphics);
-            graphics.translate(- offset, 0.0);
-            offset += view.size().width();
+            offset = offset.offsetX(view.size().width());
         }
         return this;
     }

@@ -41,9 +41,7 @@ public class StackView extends View {
     /** {@inheritDoc} */
     @Override
     public StackView paint(@NonNull Graphics2D graphics) {
-        for (View view : views()) {
-            view.paint(graphics);
-        }
+        views.forEach(view -> view.paint(graphics));
         return this;
     }
 

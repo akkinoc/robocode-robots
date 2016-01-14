@@ -18,7 +18,7 @@ public abstract class View {
     /**
      * レイアウトする。
      *
-     * @param graphics 描画先。
+     * @param graphics グラフィックス。
      * @return 自身のインスタンス。
      */
     public abstract View layout(Graphics2D graphics);
@@ -26,7 +26,7 @@ public abstract class View {
     /**
      * 描画する。
      *
-     * @param graphics 描画先。
+     * @param graphics グラフィックス。
      * @return 自身のインスタンス。
      */
     public abstract View paint(Graphics2D graphics);

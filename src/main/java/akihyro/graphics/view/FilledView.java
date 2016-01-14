@@ -1,11 +1,13 @@
 package akihyro.graphics.view;
 
 import akihyro.geom.Size;
+import akihyro.graphics.scope.PaintScope;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
+import lombok.Cleanup;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -48,10 +50,8 @@ public class FilledView extends View {
     /** {@inheritDoc} */
     @Override
     public FilledView paint(@NonNull Graphics2D graphics) {
-        Paint originalPattern = graphics.getPaint();
-        graphics.setPaint(pattern());
+        @Cleanup PaintScope paintScope = new PaintScope(graphics, pattern()).begin();
         graphics.fill(shape());
-        graphics.setPaint(originalPattern);
         return this;
     }
 

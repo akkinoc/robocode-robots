@@ -1,7 +1,6 @@
 package akihyro.graphics.view;
 
 import akihyro.geom.RectEdge;
-import akihyro.geom.Size;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Shape;
@@ -30,11 +29,9 @@ public class PanelView extends EdgedView {
     @Override
     public PanelView layout(@NonNull Graphics2D graphics) {
         super.layout(graphics);
-        Size size = size();
-        RectEdge edge = edge();
         Shape shape = new RoundRectangle2D.Double(
-                0.0, 0.0, size.width(), size.height(),
-                edge.left() + edge.right() / 2.0, edge.bottom() + edge.top() / 2.0
+                0.0, 0.0, size().width(), size().height(),
+                edge().left() + edge().right() / 2.0, edge().bottom() + edge().top() / 2.0
         );
         backgroundView.shape(shape).layout(graphics);
         return this;

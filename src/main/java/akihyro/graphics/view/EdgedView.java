@@ -1,8 +1,11 @@
 package akihyro.graphics.view;
 
+import akihyro.geom.Point;
 import akihyro.geom.RectEdge;
 import akihyro.geom.Size;
+import akihyro.graphics.scope.TranslateScope;
 import java.awt.Graphics2D;
+import lombok.Cleanup;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -34,21 +37,25 @@ public class EdgedView extends View {
     @Getter
     private Size size = Size.EMPTY;
 
+    /**
+     * オフセット。
+     */
+    private Point offset = Point.ORIGIN;
+
     /** {@inheritDoc} */
     @Override
     public EdgedView layout(@NonNull Graphics2D graphics) {
-        View view = view().layout(graphics);
-        size = view.size().edged(edge());
+        view().layout(graphics);
+        size = view().size().edged(edge());
+        offset = Point.of(edge().left(), edge().bottom());
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
     public EdgedView paint(@NonNull Graphics2D graphics) {
-        RectEdge edge = edge();
-        graphics.translate(edge.left(), edge.bottom());
+        @Cleanup TranslateScope translateScope = new TranslateScope(graphics, offset).begin();
         view().paint(graphics);
-        graphics.translate(- edge.left(), - edge.bottom());
         return this;
     }
 
