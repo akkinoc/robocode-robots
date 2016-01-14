@@ -8,7 +8,7 @@ import lombok.NonNull;
 /**
  * 平行移動変換を適用するグラフィカルスコープ。
  */
-public class TranslateScope extends GraphicalScope {
+public class TranslateScope extends GraphicsScope {
 
     /**
      * 移動量。

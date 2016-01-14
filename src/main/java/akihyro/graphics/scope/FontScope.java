@@ -8,7 +8,7 @@ import lombok.NonNull;
 /**
  * フォントを適用するグラフィカルスコープ。
  */
-public class FontScope extends GraphicalScope {
+public class FontScope extends GraphicsScope {
 
     /**
      * フォント。

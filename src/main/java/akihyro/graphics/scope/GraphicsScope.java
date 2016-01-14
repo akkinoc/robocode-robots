@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.NonNull;
 
 /**
- * グラフィカルスコープ。
+ * グラフィックススコープ。
  */
-public abstract class GraphicalScope implements AutoCloseable {
+public abstract class GraphicsScope implements AutoCloseable {
 
     /**
      * グラフィックス。
@@ -20,7 +20,7 @@ public abstract class GraphicalScope implements AutoCloseable {
      *
      * @param graphics グラフィックス。
      */
-    public GraphicalScope(@NonNull Graphics2D graphics) {
+    public GraphicsScope(@NonNull Graphics2D graphics) {
         this.graphics = graphics;
     }
 
@@ -29,14 +29,14 @@ public abstract class GraphicalScope implements AutoCloseable {
      *
      * @return 自身のインスタンス。
      */
-    public abstract GraphicalScope begin();
+    public abstract GraphicsScope begin();
 
     /**
      * スコープを終了する。
      *
      * @return 自身のインスタンス。
      */
-    public abstract GraphicalScope end();
+    public abstract GraphicsScope end();
 
     /** {@inheritDoc} */
     @Override

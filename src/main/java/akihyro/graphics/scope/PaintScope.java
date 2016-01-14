@@ -8,7 +8,7 @@ import lombok.NonNull;
 /**
  * ペイントを適用するグラフィカルスコープ。
  */
-public class PaintScope extends GraphicalScope {
+public class PaintScope extends GraphicsScope {
 
     /**
      * ペイント。
