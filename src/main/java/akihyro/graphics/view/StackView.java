@@ -1,7 +1,7 @@
 package akihyro.graphics.view;
 
 import akihyro.geom.Size;
-import java.awt.Graphics2D;
+import akihyro.graphics.context.GraphicsContext;
 import static java.util.Collections.emptyList;
 import java.util.List;
 import lombok.Getter;
@@ -29,10 +29,10 @@ public class StackView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public StackView layout(@NonNull Graphics2D graphics) {
+    public StackView layout(@NonNull GraphicsContext context) {
         size = Size.EMPTY;
         for (View view : views()) {
-            view.layout(graphics);
+            view.layout(context);
             size = size.union(view.size());
         }
         return this;
@@ -40,8 +40,8 @@ public class StackView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public StackView paint(@NonNull Graphics2D graphics) {
-        views.forEach(view -> view.paint(graphics));
+    public StackView paint(@NonNull GraphicsContext context) {
+        views.forEach(view -> view.paint(context));
         return this;
     }
 

@@ -3,8 +3,8 @@ package akihyro.graphics.view;
 import akihyro.geom.Point;
 import akihyro.geom.RectEdge;
 import akihyro.geom.Size;
+import akihyro.graphics.context.GraphicsContext;
 import akihyro.graphics.scope.TranslateScope;
-import java.awt.Graphics2D;
 import lombok.Cleanup;
 import lombok.Getter;
 import lombok.NonNull;
@@ -44,8 +44,8 @@ public class EdgedView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public EdgedView layout(@NonNull Graphics2D graphics) {
-        view().layout(graphics);
+    public EdgedView layout(@NonNull GraphicsContext context) {
+        view().layout(context);
         size = view().size().edged(edge());
         offset = Point.of(edge().left(), edge().bottom());
         return this;
@@ -53,9 +53,9 @@ public class EdgedView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public EdgedView paint(@NonNull Graphics2D graphics) {
-        @Cleanup TranslateScope translateScope = new TranslateScope(graphics, offset).begin();
-        view().paint(graphics);
+    public EdgedView paint(@NonNull GraphicsContext context) {
+        @Cleanup TranslateScope translateScope = new TranslateScope(context, offset).begin();
+        view().paint(context);
         return this;
     }
 

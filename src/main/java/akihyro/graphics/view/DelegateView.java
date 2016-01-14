@@ -1,7 +1,7 @@
 package akihyro.graphics.view;
 
 import akihyro.geom.Size;
-import java.awt.Graphics2D;
+import akihyro.graphics.context.GraphicsContext;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -27,15 +27,15 @@ public class DelegateView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public DelegateView layout(Graphics2D graphics) {
-        view().layout(graphics);
+    public DelegateView layout(GraphicsContext context) {
+        view().layout(context);
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public DelegateView paint(Graphics2D graphics) {
-        view().paint(graphics);
+    public DelegateView paint(GraphicsContext context) {
+        view().paint(context);
         return this;
     }
 

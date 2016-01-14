@@ -1,7 +1,7 @@
 package akihyro.graphics.view;
 
 import akihyro.geom.Size;
-import java.awt.Graphics2D;
+import akihyro.graphics.context.GraphicsContext;
 
 /**
  * ビュー。
@@ -18,17 +18,17 @@ public abstract class View {
     /**
      * レイアウトする。
      *
-     * @param graphics グラフィックス。
+     * @param context グラフィックスコンテキスト。
      * @return 自身のインスタンス。
      */
-    public abstract View layout(Graphics2D graphics);
+    public abstract View layout(GraphicsContext context);
 
     /**
      * 描画する。
      *
-     * @param graphics グラフィックス。
+     * @param context グラフィックスコンテキスト。
      * @return 自身のインスタンス。
      */
-    public abstract View paint(Graphics2D graphics);
+    public abstract View paint(GraphicsContext context);
 
 }

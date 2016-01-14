@@ -1,7 +1,7 @@
 package akihyro.graphics.view;
 
 import akihyro.geom.Size;
-import java.awt.Graphics2D;
+import akihyro.graphics.context.GraphicsContext;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -24,13 +24,13 @@ public class EmptyView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public EmptyView layout(Graphics2D graphics) {
+    public EmptyView layout(GraphicsContext context) {
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public EmptyView paint(Graphics2D graphics) {
+    public EmptyView paint(GraphicsContext context) {
         return this;
     }
 

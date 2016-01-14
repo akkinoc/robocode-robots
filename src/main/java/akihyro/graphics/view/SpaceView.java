@@ -1,7 +1,7 @@
 package akihyro.graphics.view;
 
 import akihyro.geom.Size;
-import java.awt.Graphics2D;
+import akihyro.graphics.context.GraphicsContext;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -21,13 +21,13 @@ public class SpaceView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public SpaceView layout(Graphics2D graphics) {
+    public SpaceView layout(GraphicsContext context) {
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public SpaceView paint(Graphics2D graphics) {
+    public SpaceView paint(GraphicsContext context) {
         return this;
     }
 

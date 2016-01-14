@@ -2,12 +2,12 @@ package akihyro.graphics.view;
 
 import akihyro.geom.Point;
 import akihyro.geom.Size;
+import akihyro.graphics.context.GraphicsContext;
 import akihyro.graphics.scope.FontScope;
 import akihyro.graphics.scope.PaintScope;
 import akihyro.graphics.scope.TranslateScope;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.Paint;
 import java.awt.geom.Rectangle2D;
 import lombok.Cleanup;
@@ -57,8 +57,8 @@ public class TextView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public TextView layout(@NonNull Graphics2D graphics) {
-        Rectangle2D bounds = font().getStringBounds(text(), graphics.getFontRenderContext());
+    public TextView layout(@NonNull GraphicsContext context) {
+        Rectangle2D bounds = font().getStringBounds(text(), context.graphics().getFontRenderContext());
         size = Size.of(bounds.getWidth(), bounds.getHeight());
         offset = Point.of(bounds.getX(), bounds.getY() + bounds.getHeight());
         return this;
@@ -66,11 +66,11 @@ public class TextView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public TextView paint(@NonNull Graphics2D graphics) {
-        @Cleanup PaintScope paintScope = new PaintScope(graphics, pattern()).begin();
-        @Cleanup FontScope fontScope = new FontScope(graphics, font()).begin();
-        @Cleanup TranslateScope translateScope = new TranslateScope(graphics, offset).begin();
-        graphics.drawString(text(), 0, 0);
+    public TextView paint(@NonNull GraphicsContext context) {
+        @Cleanup PaintScope paintScope = new PaintScope(context, pattern()).begin();
+        @Cleanup FontScope fontScope = new FontScope(context, font()).begin();
+        @Cleanup TranslateScope translateScope = new TranslateScope(context, offset).begin();
+        context.graphics().drawString(text(), 0, 0);
         return this;
 
     }

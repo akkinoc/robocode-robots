@@ -1,6 +1,6 @@
 package akihyro.graphics.scope;
 
-import java.awt.Graphics2D;
+import akihyro.graphics.context.GraphicsContext;
 import lombok.Getter;
 import lombok.NonNull;
 
@@ -10,18 +10,18 @@ import lombok.NonNull;
 public abstract class GraphicsScope implements AutoCloseable {
 
     /**
-     * グラフィックス。
+     * グラフィックスコンテキスト。
      */
     @Getter
-    private final Graphics2D graphics;
+    private final GraphicsContext context;
 
     /**
      * コンストラクタ。
      *
-     * @param graphics グラフィックス。
+     * @param context グラフィックスコンテキスト。
      */
-    public GraphicsScope(@NonNull Graphics2D graphics) {
-        this.graphics = graphics;
+    public GraphicsScope(@NonNull GraphicsContext context) {
+        this.context = context;
     }
 
     /**

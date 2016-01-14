@@ -1,8 +1,8 @@
 package akihyro.graphics.view;
 
 import akihyro.geom.RectEdge;
+import akihyro.graphics.context.GraphicsContext;
 import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import lombok.NonNull;
@@ -27,21 +27,21 @@ public class PanelView extends EdgedView {
 
     /** {@inheritDoc} */
     @Override
-    public PanelView layout(@NonNull Graphics2D graphics) {
-        super.layout(graphics);
+    public PanelView layout(@NonNull GraphicsContext context) {
+        super.layout(context);
         Shape shape = new RoundRectangle2D.Double(
                 0.0, 0.0, size().width(), size().height(),
                 edge().left() + edge().right() / 2.0, edge().bottom() + edge().top() / 2.0
         );
-        backgroundView.shape(shape).layout(graphics);
+        backgroundView.shape(shape).layout(context);
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
-    public PanelView paint(@NonNull Graphics2D graphics) {
-        backgroundView.paint(graphics);
-        super.paint(graphics);
+    public PanelView paint(@NonNull GraphicsContext context) {
+        backgroundView.paint(context);
+        super.paint(context);
         return this;
     }
 

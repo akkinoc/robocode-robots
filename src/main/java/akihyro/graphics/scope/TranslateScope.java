@@ -1,7 +1,7 @@
 package akihyro.graphics.scope;
 
 import akihyro.geom.Point;
-import java.awt.Graphics2D;
+import akihyro.graphics.context.GraphicsContext;
 import lombok.Getter;
 import lombok.NonNull;
 
@@ -19,25 +19,25 @@ public class TranslateScope extends GraphicsScope {
     /**
      * コンストラクタ。
      *
-     * @param graphics グラフィックス。
+     * @param context グラフィックスコンテキスト。
      * @param offset 移動量。
      */
-    public TranslateScope(@NonNull Graphics2D graphics, Point offset) {
-        super(graphics);
+    public TranslateScope(@NonNull GraphicsContext context, Point offset) {
+        super(context);
         this.offset = offset;
     }
 
     /** {@inheritDoc} */
     @Override
     public TranslateScope begin() {
-        graphics().translate(offset().x(), offset().y());
+        context().graphics().translate(offset().x(), offset().y());
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
     public TranslateScope end() {
-        graphics().translate(- offset().x(), - offset().y());
+        context().graphics().translate(- offset().x(), - offset().y());
         return this;
     }
 

@@ -2,8 +2,8 @@ package akihyro.graphics.view;
 
 import akihyro.geom.Point;
 import akihyro.geom.Size;
+import akihyro.graphics.context.GraphicsContext;
 import akihyro.graphics.scope.TranslateScope;
-import java.awt.Graphics2D;
 import static java.util.Collections.emptyList;
 import java.util.List;
 import lombok.Cleanup;
@@ -32,10 +32,10 @@ public class RowView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public RowView layout(@NonNull Graphics2D graphics) {
+    public RowView layout(@NonNull GraphicsContext context) {
         size = Size.EMPTY;
         for (View view : views()) {
-            view.layout(graphics);
+            view.layout(context);
             size = size.joinHorizontal(view.size());
         }
         return this;
@@ -43,11 +43,11 @@ public class RowView extends View {
 
     /** {@inheritDoc} */
     @Override
-    public RowView paint(@NonNull Graphics2D graphics) {
+    public RowView paint(@NonNull GraphicsContext context) {
         Point offset = Point.of(0.0, 0.0);
         for (View view : views()) {
-            @Cleanup TranslateScope translateScope = new TranslateScope(graphics, offset).begin();
-            view.paint(graphics);
+            @Cleanup TranslateScope translateScope = new TranslateScope(context, offset).begin();
+            view.paint(context);
             offset = offset.offsetX(view.size().width());
         }
         return this;

@@ -1,6 +1,6 @@
 package akihyro.graphics.scope;
 
-import java.awt.Graphics2D;
+import akihyro.graphics.context.GraphicsContext;
 import java.awt.Paint;
 import lombok.Getter;
 import lombok.NonNull;
@@ -24,26 +24,26 @@ public class PaintScope extends GraphicsScope {
     /**
      * コンストラクタ。
      *
-     * @param graphics グラフィックス。
+     * @param context グラフィックスコンテキスト。
      * @param paint ペイント。
      */
-    public PaintScope(@NonNull Graphics2D graphics, @NonNull Paint paint) {
-        super(graphics);
+    public PaintScope(@NonNull GraphicsContext context, @NonNull Paint paint) {
+        super(context);
         this.paint = paint;
     }
 
     /** {@inheritDoc} */
     @Override
     public PaintScope begin() {
-        lastPaint = graphics().getPaint();
-        graphics().setPaint(paint());
+        lastPaint = context().graphics().getPaint();
+        context().graphics().setPaint(paint());
         return this;
     }
 
     /** {@inheritDoc} */
     @Override
     public PaintScope end() {
-        graphics().setPaint(lastPaint);
+        context().graphics().setPaint(lastPaint);
         return this;
     }
 
