@@ -17,7 +17,7 @@ public class PanelView extends View {
      * ビュー。
      */
     private final EdgedView view = new EdgedView()
-            .edge(RectEdge.of(5.0));
+            .edge(RectEdge.of(10.0));
 
     /**
      * 背景ビュー。
