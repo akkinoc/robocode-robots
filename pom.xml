@@ -258,6 +258,7 @@
                             <report>cim</report>
                             <report>dependencies</report>
                             <report>plugins</report>
+                            <report>project-team</report>
                         </reports>
                     </reportSet>
                 </reportSets>
