@@ -17,6 +17,15 @@
     <description>My robocode robots.</description>
     <url>https://github.com/akihyro/robocode-robots</url>
 
+    <properties>
+        <author.id>akihyro</author.id>
+        <author.name>Akihiro Kondo</author.name>
+        <author.email>akihyro@gmail.com</author.email>
+        <author.url>http://rakugakibox.net</author.url>
+        <robocode.version>1.9.2.1</robocode.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <organization>
         <name>rakugakibox.net</name>
         <url>http://rakugakibox.net</url>
@@ -40,22 +49,18 @@
 
     <developers>
         <developer>
-            <id>akihyro</id>
-            <name>Akihiro Kondo</name>
-            <email>akihyro@gmail.com</email>
-            <url>http://rakugakibox.net</url>
+            <id>${author.id}</id>
+            <name>${author.name}</name>
+            <email>${author.email}</email>
+            <url>${author.url}</url>
         </developer>
     </developers>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
             <groupId>net.sf.robocode</groupId>
             <artifactId>robocode.api</artifactId>
-            <version>1.9.2.1</version>
+            <version>${robocode.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -85,6 +90,18 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
