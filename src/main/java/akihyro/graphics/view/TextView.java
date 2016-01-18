@@ -72,7 +72,6 @@ public class TextView extends View {
         @Cleanup TranslateScope translateScope = new TranslateScope(context, offset).begin();
         context.graphics().drawString(text(), 0, 0);
         return this;
-
     }
 
 }
