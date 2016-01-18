@@ -197,10 +197,4 @@ public class Rect {
         return bottomLeft().nears(rect.bottomLeft()) && size().nears(rect.size());
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public String toString() {
-        return "(bottomLeft=" + bottomLeft() + ", size=" + size() + ")";
-    }
-
 }

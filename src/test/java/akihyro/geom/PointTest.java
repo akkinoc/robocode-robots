@@ -104,13 +104,4 @@ public class PointTest {
         assertThat(point.nears(other)).isFalse();
     }
 
-    /**
-     * {@link Point#toString()} をテストする。
-     */
-    @Test
-    public void toString_文字列に変換できる() {
-        Point actual = Point.of(1.2, 3.4);
-        assertThat(actual).hasToString("(1.2, 3.4)");
-    }
-
 }

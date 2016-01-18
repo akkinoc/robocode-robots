@@ -191,13 +191,4 @@ public class SizeTest {
         assertThat(size.nears(other)).isFalse();
     }
 
-    /**
-     * {@link Size#toString()} をテストする。
-     */
-    @Test
-    public void toString_文字列に変換できる() {
-        Size actual = Size.of(1.2, 3.4);
-        assertThat(actual).hasToString("(1.2 x 3.4)");
-    }
-
 }

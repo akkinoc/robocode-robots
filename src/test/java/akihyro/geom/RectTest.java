@@ -219,13 +219,4 @@ public class RectTest {
         assertThat(rect.nears(other)).isFalse();
     }
 
-    /**
-     * {@link Rect#toString()} をテストする。
-     */
-    @Test
-    public void toString_文字列に変換できる() {
-        Rect actual = Rect.fromBottomLeft(Point.of(1.2, 3.4), Size.of(5.6, 7.8));
-        assertThat(actual).hasToString("(bottomLeft=(1.2, 3.4), size=(5.6 x 7.8))");
-    }
-
 }

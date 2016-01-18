@@ -86,10 +86,4 @@ public class RectEdge {
                 && isNear(right(), edge.right()) && isNear(top(), edge.top());
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public String toString() {
-        return "(left=" + left() + ", bottom=" + bottom() + ", right=" + right() + ", top=" + top() + ")";
-    }
-
 }
