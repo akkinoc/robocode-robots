@@ -18,6 +18,12 @@
             <item name="${project.name}" href="index.html" />
         </breadcrumbs>
         <menu ref="reports" />
+        <menu name="API Reference">
+            <item name="KDoc" href="kdoc/${project.name}/index.html" target="_blank" />
+            <item name="Javadoc" href="javadoc/index.html" target="_blank" />
+            <item name="KDoc (Test)" href="test-kdoc/${project.name}/index.html" target="_blank" />
+            <item name="Javadoc (Test)" href="test-javadoc/index.html" target="_blank" />
+        </menu>
     </body>
 
     <custom>

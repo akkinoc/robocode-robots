@@ -49,6 +49,14 @@
         </developer>
     </developers>
 
+    <pluginRepositories>
+        <pluginRepository>
+            <id>jcenter</id>
+            <name>JCenter</name>
+            <url>https://jcenter.bintray.com/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <robocode.version>1.9.2.1</robocode.version>
@@ -60,6 +68,11 @@
             <artifactId>robocode.api</artifactId>
             <version>${robocode.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>1.1.1</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -76,6 +89,8 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -91,7 +106,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>2.10</version>
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -139,15 +154,40 @@
                 <version>3.0.2</version>
             </plugin>
             <plugin>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <version>1.1.1</version>
+                <configuration>
+                    <jvmTarget>1.8</jvmTarget>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.6.1</version>
-                <configuration>
-                    <compilerVersion>1.8</compilerVersion>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <showDeprecation>true</showDeprecation>
-                    <showWarnings>true</showWarnings>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -188,24 +228,68 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
+                <groupId>org.jetbrains.dokka</groupId>
+                <artifactId>dokka-maven-plugin</artifactId>
+                <version>0.9.13</version>
                 <configuration>
-                    <locale>ja</locale>
-                    <quiet>true</quiet>
+                    <includes>
+                        <include>MODULE.md</include>
+                    </includes>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>jar</id>
+                        <id>dokka</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>dokka</goal>
                         </goals>
+                        <configuration>
+                            <sourceDirectories>
+                                <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                            </sourceDirectories>
+                            <outputDir>${project.build.directory}/kdoc</outputDir>
+                        </configuration>
                     </execution>
                     <execution>
-                        <id>test-jar</id>
+                        <id>javadocJar</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>test-jar</goal>
+                            <goal>javadocJar</goal>
                         </goals>
+                        <configuration>
+                            <sourceDirectories>
+                                <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                            </sourceDirectories>
+                            <outputDir>${project.build.directory}/javadoc</outputDir>
+                            <classifier>javadoc</classifier>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-dokka</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>dokka</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectories>
+                                <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
+                            </sourceDirectories>
+                            <outputDir>${project.build.directory}/test-kdoc</outputDir>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-javadocJar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>javadocJar</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectories>
+                                <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
+                            </sourceDirectories>
+                            <outputDir>${project.build.directory}/test-javadoc</outputDir>
+                            <classifier>test-javadoc</classifier>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -256,20 +340,11 @@
                 </reportSets>
             </plugin>
             <plugin>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.5</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
-                <configuration>
-                    <locale>ja</locale>
-                    <quiet>true</quiet>
-                </configuration>
-            </plugin>
-            <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>2.19.1</version>
+                <configuration>
+                    <linkXRef>false</linkXRef>
+                </configuration>
                 <reportSets>
                     <reportSet>
                         <reports>
