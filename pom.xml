@@ -103,6 +103,7 @@
                 <version>0.7.9</version>
                 <executions>
                     <execution>
+                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
@@ -118,6 +119,7 @@
                 <version>2.2.0</version>
                 <executions>
                     <execution>
+                        <id>revision</id>
                         <goals>
                             <goal>revision</goal>
                         </goals>
@@ -160,6 +162,7 @@
                 <version>3.0.2</version>
                 <executions>
                     <execution>
+                        <id>test-jar</id>
                         <goals>
                             <goal>test-jar</goal>
                         </goals>
@@ -171,8 +174,14 @@
                 <version>3.0.1</version>
                 <executions>
                     <execution>
+                        <id>jar</id>
                         <goals>
                             <goal>jar</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-jar</id>
+                        <goals>
                             <goal>test-jar</goal>
                         </goals>
                     </execution>
@@ -183,8 +192,14 @@
                 <version>2.10.4</version>
                 <executions>
                     <execution>
+                        <id>jar</id>
                         <goals>
                             <goal>jar</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>test-jar</id>
+                        <goals>
                             <goal>test-jar</goal>
                         </goals>
                     </execution>
@@ -199,6 +214,7 @@
                 <version>3.6</version>
                 <executions>
                     <execution>
+                        <id>jar</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
