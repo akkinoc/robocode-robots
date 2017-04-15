@@ -1,35 +1,28 @@
-<!--=================================================================================================================
- | POM
- +===================================================================================================================-->
-
 <project
     xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>akihyro</groupId>
-    <artifactId>akihyro-robocode-robots</artifactId>
-    <version>0.1</version>
+    <artifactId>robocode-robots</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
-    <name>akihyro-robocode-robots</name>
-    <description>My robocode robots.</description>
+    <name>robocode-robots</name>
+    <description>My Robocode robots</description>
     <url>https://github.com/akihyro/robocode-robots</url>
-
-    <properties>
-        <author.id>akihyro</author.id>
-        <author.name>Akihiro Kondo</author.name>
-        <author.email>akihyro@gmail.com</author.email>
-        <author.url>http://rakugakibox.net</author.url>
-        <robocode.version>1.9.2.1</robocode.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <organization>
         <name>rakugakibox.net</name>
         <url>http://rakugakibox.net</url>
     </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
     <scm>
         <url>https://github.com/akihyro/robocode-robots</url>
@@ -49,24 +42,23 @@
 
     <developers>
         <developer>
-            <id>${author.id}</id>
-            <name>${author.name}</name>
-            <email>${author.email}</email>
-            <url>${author.url}</url>
+            <id>akihyro</id>
+            <name>Akihiro Kondo</name>
+            <email>akihyro@gmail.com</email>
+            <url>http://rakugakibox.net</url>
         </developer>
     </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <robocode.version>1.9.2.1</robocode.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>net.sf.robocode</groupId>
             <artifactId>robocode.api</artifactId>
             <version>${robocode.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.6</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -78,13 +70,7 @@
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.3.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jmockit</groupId>
-            <artifactId>jmockit</artifactId>
-            <version>1.21</version>
+            <version>3.6.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -105,7 +91,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.10</version>
+                <version>3.0.0</version>
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -114,10 +100,9 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.5.201505241946</version>
+                <version>0.7.9</version>
                 <executions>
                     <execution>
-                        <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
@@ -133,7 +118,6 @@
                 <version>2.2.0</version>
                 <executions>
                     <execution>
-                        <id>revision</id>
                         <goals>
                             <goal>revision</goal>
                         </goals>
@@ -142,73 +126,51 @@
                 <configuration>
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
                     <generateGitPropertiesFilename>
-                        ${project.build.outputDirectory}/akihyro/robocode-robots-git.properties
+                        ${project.build.outputDirectory}/akihyro/git.properties
                     </generateGitPropertiesFilename>
                     <dateFormat>yyyy-MM-dd'T'HH:mm:ssZ</dateFormat>
                     <verbose>false</verbose>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok-maven-plugin</artifactId>
-                <version>1.16.6.1</version>
-                <executions>
-                    <execution>
-                        <id>delombok</id>
-                        <goals>
-                            <goal>delombok</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
-                            <addOutputDirectory>false</addOutputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.7</version>
+                <version>3.0.2</version>
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.6.1</version>
                 <configuration>
                     <compilerVersion>1.8</compilerVersion>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>net.orfjackal.retrolambda</groupId>
-                <artifactId>retrolambda-maven-plugin</artifactId>
-                <version>2.1.0</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                    <trimStackTrace>false</trimStackTrace>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
                 <executions>
                     <execution>
-                        <id>process</id>
                         <goals>
-                            <goal>process-main</goal>
-                            <goal>process-test</goal>
+                            <goal>test-jar</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
-                <configuration>
-                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.6</version>
-            </plugin>
-            <plugin>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
-                        <id>jar</id>
                         <goals>
                             <goal>jar</goal>
                             <goal>test-jar</goal>
@@ -218,10 +180,9 @@
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>2.10.4</version>
                 <executions>
                     <execution>
-                        <id>jar</id>
                         <goals>
                             <goal>jar</goal>
                             <goal>test-jar</goal>
@@ -229,16 +190,27 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <locale>ja</locale>
                     <quiet>true</quiet>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <locales>ja</locales>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>
                 <version>2.5.2</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.4</version>
             </plugin>
         </plugins>
     </build>
@@ -247,18 +219,18 @@
         <plugins>
             <plugin>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.8.1</version>
+                <version>2.9</version>
                 <reportSets>
                     <reportSet>
                         <reports>
                             <report>index</report>
                             <report>summary</report>
+                            <report>license</report>
                             <report>scm</report>
                             <report>issue-tracking</report>
                             <report>cim</report>
                             <report>dependencies</report>
                             <report>plugins</report>
-                            <report>project-team</report>
                         </reports>
                     </reportSet>
                 </reportSets>
@@ -273,14 +245,15 @@
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>2.10.4</version>
                 <configuration>
+                    <locale>ja</locale>
                     <quiet>true</quiet>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.18.1</version>
+                <version>2.19.1</version>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -292,7 +265,14 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.5.201505241946</version>
+                <version>0.7.9</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>

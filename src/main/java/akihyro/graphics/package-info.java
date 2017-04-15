@@ -1,4 +1,0 @@
-/**
- * グラフィックス。
- */
-package akihyro.graphics;

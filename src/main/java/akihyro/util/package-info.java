@@ -1,4 +1,0 @@
-/**
- * ユーティリティ。
- */
-package akihyro.util;
