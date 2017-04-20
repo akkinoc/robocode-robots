@@ -1,7 +1,7 @@
 # Module robocode-robots
 
-My Robocode robots.  
+Robocode で戦う僕の戦車たち。  
 
 # Package akihyro
 
-My Robocode robots.  
+Robocode で戦う僕の戦車たち。  

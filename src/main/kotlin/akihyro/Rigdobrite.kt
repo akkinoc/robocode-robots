@@ -3,6 +3,6 @@ package akihyro
 import robocode.AdvancedRobot
 
 /**
- * Robot: Rigdobrite.
+ * Rigdobrite.
  */
 class Rigdobrite : AdvancedRobot()

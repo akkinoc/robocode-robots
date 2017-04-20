@@ -9,7 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>robocode-robots</name>
-    <description>My Robocode robots</description>
+    <description>Robocode で戦う僕の戦車たち</description>
     <url>https://github.com/akihyro/robocode-robots</url>
 
     <organization>

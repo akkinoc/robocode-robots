@@ -11,12 +11,6 @@
 [License Badge]: https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg
 [License]: LICENSE.txt
 
-My [Robocode] robots.  
+[Robocode] で戦う僕の戦車たち。  
 
 [Robocode]: http://robocode.sourceforge.net/
-
-## License
-
-Licensed under the [Apache License, Version 2.0].  
-
-[Apache License, Version 2.0]: LICENSE.txt

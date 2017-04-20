@@ -3,6 +3,6 @@ package akihyro
 import robocode.AdvancedRobot
 
 /**
- * Robot: Luceid.
+ * Luceid.
  */
 class Luceid : AdvancedRobot()
