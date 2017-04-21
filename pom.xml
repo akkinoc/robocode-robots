@@ -235,6 +235,7 @@
                     <includes>
                         <include>MODULE.md</include>
                     </includes>
+                    <jdkVersion>8</jdkVersion>
                 </configuration>
                 <executions>
                     <execution>
