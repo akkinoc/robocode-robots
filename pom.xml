@@ -248,7 +248,7 @@
                             <sourceDirectories>
                                 <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
                             </sourceDirectories>
-                            <outputDir>${project.build.directory}/kdoc</outputDir>
+                            <outputDir>${project.build.directory}/generated-site/resources/kdoc</outputDir>
                         </configuration>
                     </execution>
                     <execution>
@@ -261,7 +261,7 @@
                             <sourceDirectories>
                                 <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
                             </sourceDirectories>
-                            <outputDir>${project.build.directory}/javadoc</outputDir>
+                            <outputDir>${project.build.directory}/generated-site/resources/javadoc</outputDir>
                             <classifier>javadoc</classifier>
                         </configuration>
                     </execution>
@@ -275,7 +275,7 @@
                             <sourceDirectories>
                                 <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
                             </sourceDirectories>
-                            <outputDir>${project.build.directory}/test-kdoc</outputDir>
+                            <outputDir>${project.build.directory}/generated-site/resources/test-kdoc</outputDir>
                         </configuration>
                     </execution>
                     <execution>
@@ -288,7 +288,7 @@
                             <sourceDirectories>
                                 <sourceDirectory>${project.build.testSourceDirectory}</sourceDirectory>
                             </sourceDirectories>
-                            <outputDir>${project.build.directory}/test-javadoc</outputDir>
+                            <outputDir>${project.build.directory}/generated-site/resources/test-javadoc</outputDir>
                             <classifier>test-javadoc</classifier>
                         </configuration>
                     </execution>
